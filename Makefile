@@ -23,7 +23,7 @@ e:
 
 # GDB
 DCC:
-	$(CC) -g
+	$(CC) -g $(PP) -o $(EXE)
 g: DCC
 	gdb $(EXE)
 
