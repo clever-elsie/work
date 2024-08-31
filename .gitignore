@@ -5,3 +5,4 @@ include/*.gch
 lib_Clever_Elsie
 shm
 set_ccpp
+venv
