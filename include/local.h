@@ -40,7 +40,7 @@ using pi = pair<int, int>;
 using str = string;
 using vs = vc<str>;
 constexpr str yes{"Yes\n"}, no{"No\n"};
-constexpr int inf = INT64_MAX, minf = INT64_MIN;
+constexpr int inf = 1ll<<60, minf = -inf;
 const vc<pi>dc={{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}};
 inline int ceil(int a,int b){ return (a+b-1)/b; }
 inline int floor(int a,int b){ return a/b-(a%b&&(a^b)<0); }

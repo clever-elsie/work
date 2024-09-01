@@ -13,7 +13,7 @@ $(EXE): $(PP)
 	$(CC) $(PP) -o $(EXE)
 $(PP):
 	cp template.cpp $(PP)
-n:
+n: shm/in shm/out
 	~/work/include/new.out
 	$(ED) $(PP)
 c:
@@ -21,6 +21,27 @@ c:
 e:
 	$(ED) $(PP)
 
+
+in:
+	$(ED) shm/in
+out:
+	$(ED) shm/out
+shm/in:
+	touch shm/in
+shm/out:
+	touch shm/out
+gen_in.cpp = shm/gen_in.cpp
+gen_in.out = shm/gen_in.out
+n_gen_in:
+	cp ~work/include/template_gen_in.cpp $(gen_in.cpp)
+ed_gen_in: $(gen_in.cpp)
+	$(ED) $(gen_in.cpp)
+gen_in: $(gen_in.out) $(EXE)
+	$(gen_in.out)
+$(gen_in.out): $(gen_in.cpp)
+	$(CC) $(gen_in.cpp) -o $(gen_in.out)
+$(gen_in.cpp):
+	touch $(gen_in.cpp)
 # GDB
 DCC:
 	$(CC) -g $(PP) -o $(EXE)
