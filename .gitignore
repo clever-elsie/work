@@ -1,7 +1,0 @@
-.vscode
-include/ac-library
-include/*.out
-include/*.gch
-lib_Clever_Elsie
-shm
-.gitignore
