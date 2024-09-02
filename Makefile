@@ -3,7 +3,7 @@ EXE= ~/work/shm/a.out
 LOCALH = ~/work/include/local.h
 LOCALGCH = ~/work/include/local.h.gch
 
-CC = g++ -std=gnu++2b -I ~/work/include -I ~/work/include/ac-library -O2
+CC = g++ -std=gnu++2b -I ~/work/include -I ~/work/include/ac-library -O2 -DLOCAL
 ED = code
 
 #C++
