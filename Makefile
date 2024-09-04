@@ -33,7 +33,7 @@ test: $(EXE)
 	$(sample_test)
 
 clean:
-	rm /dev/shm/*
+	-rm /dev/shm/*
 
 # GDB
 DCC:
