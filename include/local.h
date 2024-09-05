@@ -6,25 +6,38 @@ using std::cin;
 using std::cout;
 #ifdef LOCAL
 template<class t> void dputval(t&v){ cout<<v<<endl; }
-void dputval(vector<string>&v){cout<<endl;for(auto x:v)cout<<"\t"<<x<<endl;}
-template<class t> void dputval(vector<t>&v){for(auto x:v)cout<<x<<" ";cout<<endl;}
-template<class t> void dputval(vector<vector<t>>&v){cout<<endl;for(auto&x:v){cout<<"\t";dputval(x);}}
-template<class t> void dputval(list<t>&v){for(auto x:v)cout<<x<<" ";cout<<endl;}
-template<class t> void dputval(set<t>&v){for(auto x:v)cout<<x<<" ";cout<<endl;}
-template<class t,class u> void dputval(map<t,u>&v){for(auto[k,x]:v)cout<<"("<<k<<","<<x<<") ";cout<<endl;}
-template<class var,class... Args>
-void dput(vector<string>&vstr,var&&v){
-	cout<<vstr.back()<<" : ";
-	dputval(v);
+template <class t, class u>
+void dputval(pair<t, u> &v) { cout << v.first << " " << v.second << endl; }
+void dputval(vector<string> &v) {
+	cout << endl;
+	for (auto x : v)
+		cout << "\t" << x << endl;
 }
-template<class var,class... Args>
-void dput(vector<string>&vstr,var&&v,Args&&... args){
-	cout<<vstr[vstr.size()-1-sizeof...(args)]<<" : ";
-	dputval(v);
-	dput(vstr,forward<Args>(args)...);
+template <class t> void dputval(vector<t> &v) { for(size_t i=0;i<v.size();i++) cout<<v[i]<<" \n"[i==v.size()-1]; }
+template <class t> void dputval(vector<vector<t>> &v) {
+	cout << endl;
+	for (auto &x : v) {
+		cout << "\t";
+		dputval(x);
+	}
 }
-template<class... Args>
-void dputs(const char*va_args,Args&&... args){
+template <class t> void dputval(list<t> &v) {
+	for (auto x : v)
+		cout << x << " ";
+	cout << endl;
+}
+template <class t> void dputval(set<t> &v) {
+	for (auto x : v)
+		cout << x << " ";
+	cout << endl;
+}
+template <class t, class u> void dputval(map<t, u> &v) {
+	for (auto [k, x] : v) cout << "(" << k << "," << x << ") ";
+	cout << endl;
+}
+template<class var,class... Args> void dput(vector<string>&vstr,var&&v){ cout<<vstr.back()<<" : "; dputval(v); }
+template<class var,class... Args> void dput(vector<string>&vstr,var&&v,Args&&... args){ cout<<vstr[vstr.size()-1-sizeof...(args)]<<" : "; dputval(v); dput(vstr,forward<Args>(args)...); }
+template<class... Args> void dputs(const char*va_args,Args&&... args){
 	string s(va_args);
 	vector<string> vs;
 	vs.reserve(sizeof...(args));
@@ -39,7 +52,7 @@ void dputs(const char*va_args,Args&&... args){
 	dput(vs,forward<Args>(args)...);
 }
 #define name_val(...) #__VA_ARGS__,__VA_ARGS__
-#define dprint(...) dputs(name_val(__VA_ARGS__))
+#define dprint(...); dputs(name_val(__VA_ARGS__));
 #else
 #define dprint(...);
 #endif
