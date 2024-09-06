@@ -12,14 +12,20 @@ all: $(EXE)
 $(EXE): $(PP)
 	$(CC) $(PP) -o $(EXE)
 $(PP):
-	cp template.cpp $(PP)
+	~/work/include/new.out
 n: clean shm/in shm/out
 	~/work/include/new.out
 	$(ED) $(PP)
-shm/in:
+IN = shm/in
+OUT = shm/out
+$(IN):
 	touch shm/in
-shm/out:
-	touch shm/out
+in: $(IN)
+	$(ED) $(IN)
+$(OUT):
+	touch $(OUT)
+out: $(OUT)
+	$(ED) $(OUT)
 
 c:
 	~/work/include/macro.out | clip.exe
@@ -36,9 +42,8 @@ clean:
 	-rm /dev/shm/*
 
 # GDB
-DCC:
+g:
 	$(CC) -g $(PP) -o $(EXE)
-g: DCC
 	gdb $(EXE)
 
 local:
