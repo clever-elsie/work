@@ -26,15 +26,10 @@ $(OUT):
 	touch $(OUT)
 out: $(OUT)
 	$(ED) $(OUT)
-
 c:
 	~/work/include/macro.out | clip.exe
 e:
 	$(ED) $(PP)
-sample = ~/work/include/sample_in.out
-sample_in: $(sample)
-	$(sample)
-sample_test = ~/work/include/sample_test.out
 test: $(EXE)
 	$(sample_test)
 
