@@ -1,7 +1,5 @@
 PP = ~/work/shm/a.cpp
 EXE= ~/work/shm/a.out
-LOCALH = ~/work/include/local.h
-LOCALGCH = ~/work/include/local.h.gch
 
 CC = g++ -std=gnu++2b -I ~/work/include -I ~/work/include/ac-library -O2 -DLOCAL
 ED = code
@@ -41,6 +39,6 @@ g:
 	$(CC) -g $(PP) -o $(EXE)
 	gdb $(EXE)
 
+LOCALH = ~/work/include/local.h
 local:
-	$(CC) $(LOCALH) -o $(LOCALGCH)
-
+	$(CC) $(LOCALH) -o $(LOCAL).gch
