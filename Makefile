@@ -4,16 +4,25 @@ EXE= ~/work/shm/a.out
 CC = g++ -std=gnu++2b -I ~/work/include -I ~/work/include/ac-library -O2 -DLOCAL
 ED = code
 
+tools = ~/work/include/tools/exe/
+new = $(tools)new.out
+macro = $(tools)macro.out
+
 #C++
 all: $(EXE)
 	$(EXE)
 $(EXE): $(PP)
 	$(CC) $(PP) -o $(EXE)
 $(PP):
-	~/work/include/new.out
+	$(new)
 n: clean shm/in shm/out
-	~/work/include/new.out
+	$(new)
 	$(ED) $(PP)
+c:
+	$(macro) | clip.exe
+e:
+	$(ED) $(PP)
+
 IN = shm/in
 OUT = shm/out
 $(IN):
@@ -24,12 +33,13 @@ $(OUT):
 	touch $(OUT)
 out: $(OUT)
 	$(ED) $(OUT)
-c:
-	~/work/include/macro.out | clip.exe
-e:
-	$(ED) $(PP)
+
+sample_test = $(tools)sample_test.out
+sample_in_out = $(tools)sample_in.out
 test: $(EXE)
 	$(sample_test)
+sample_in:
+	$(sample_in_out)
 
 clean:
 	-rm /dev/shm/*

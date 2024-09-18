@@ -1,6 +1,7 @@
 .vscode
 include/ac-library
-include/*.out
+include/tools/exe/*.out
+include/server/*.out
 include/*.gch
 lib_Clever_Elsie
 shm
