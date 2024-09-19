@@ -16,13 +16,11 @@ int main(){
 	}
 	sort(exe.begin(),exe.end());
 	for(auto fstr:exe){
-		cout<<endl;
 		ifstream inputfile(fstr);
 		cout<<fstr<<endl;
 		string tmp;
 		while(getline(inputfile,tmp))
 			cout<<tmp<<endl;
-		cout<<endl;
 		string command=string("/dev/shm/a.out < ")+fstr;
 		int ret=system(command.c_str());
 	}
