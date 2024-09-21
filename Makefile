@@ -51,4 +51,4 @@ g:
 
 LOCALH = ~/work/include/local.h
 local:
-	$(CC) $(LOCALH) -o $(LOCAL).gch
+	$(CC) $(LOCALH) -o $(LOCALH).gch
