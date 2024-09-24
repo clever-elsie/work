@@ -100,6 +100,7 @@ using uintw = __uint128_t;
 constexpr str yes{"Yes\n"}, no{"No\n"};
 constexpr int inf = 1ll<<60, minf = -inf;
 const vc<pi>dc={{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}};
+const vc<unsigned> mods{998244353,998244853,1'000'000'007,1'000'000'009,1'000'000'021,1'000'000'033};
 inline int ceil(const int a,const int b){ return (a+b-1)/b; }
 inline int floor(const int a,const int b){ return a/b-(a%b&&(a^b)<0); }
 
