@@ -25,6 +25,7 @@
 #include<cmath> // sin, asin, sinh, exp, log, sqrt, abs, fma, 
 #include<chrono> // chrono::high_resolution_clock::now(); chrono::duration_cast<chrono::milliseconds>(ed-st).count();
 #include<random> // random_device seed; mt19937_64 gen(seed());
+#include<concepts>
 // needed def
 #include<cstddef> // size_t
 #include<cstdint> // intN_t, uintN_t
@@ -44,13 +45,17 @@ using mint1 = modint1000000007;
 #include<ext/pb_ds/hash_policy.hpp>
 using namespace __gnu_pbds;
 template <class s>
-using gnu_set = tree<s, null_type, less<s>, rb_tree_tag, tree_order_statistics_node_update>;
-template <class s,integral T>
-gnu_set<s>::iterator operator[](gnu_set<s>&src,T i){ return src.find_by_order(i); }
+using __gnu_set = tree<s, null_type, less<s>, rb_tree_tag, tree_order_statistics_node_update>;
+template <class s>
+struct gnu_set:public __gnu_set<s>{
+	using iterator = typename __gnu_set<s>::iterator;
+	template <integral T>
+	iterator operator[](T i){ return this->find_by_order(i); }
+};
 // gnu_set is random iteratorable set
 // order_of_key(key) -> get N of (key is Nth);
-template <class s,class t> using gnu_umap=gp_hash_table<s,t>;
-template <class s,class t, class hash> using gnu_umap = gp_hash_table<s,t,hash>;
+template <class s,class t,class hash=hash<s>>
+using gnu_umap = gp_hash_table<s,t,hash>;
 // gnu_umap is fast unordered hash map
 #define fi first
 #define se second
