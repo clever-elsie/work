@@ -28,15 +28,30 @@
 // needed def
 #include<cstddef> // size_t
 #include<cstdint> // intN_t, uintN_t
-#include<atcoder/modint>
-using namespace atcoder;
-using mint = modint998244353;
-using mint1 = modint1000000007;
 using namespace std;
 namespace vies=std::views;
 using std::cin;
 using std::cout;
 using sstream = stringstream;
+// ACL
+#include<atcoder/modint>
+using namespace atcoder;
+using mint = modint998244353;
+using mint1 = modint1000000007;
+// GNU G++ ext
+#include<ext/pb_ds/assoc_container.hpp>
+#include<ext/pb_ds/tree_policy.hpp>
+#include<ext/pb_ds/hash_policy.hpp>
+using namespace __gnu_pbds;
+template <class s>
+using gnu_set = tree<s, null_type, less<s>, rb_tree_tag, tree_order_statistics_node_update>;
+template <class s,integral T>
+gnu_set<s>::iterator operator[](gnu_set<s>&src,T i){ return src.find_by_order(i); }
+// gnu_set is random iteratorable set
+// order_of_key(key) -> get N of (key is Nth);
+template <class s,class t> using gnu_umap=gp_hash_table<s,t>;
+template <class s,class t, class hash> using gnu_umap = gp_hash_table<s,t,hash>;
+// gnu_umap is fast unordered hash map
 #define fi first
 #define se second
 #define endl '\n'
@@ -63,17 +78,15 @@ template <class f> using v4 = vv<vv<f>>;
 template <class f> using gr = greater<f>;
 template <class f> using pq = priority_queue<f>;
 template <class f> using pqg = priority_queue<f, vc<f>, gr<f>>;
-template <class Key, class Hash = hash<Key>, class Pred = equal_to<Key>, class Allocator = allocator<Key>>
-using uset = unordered_set<Key, Hash, Pred, Allocator>;
-template <class Key, class T, class Hash = hash<Key>, class Pred = equal_to<Key>, class Allocator = allocator<pair<const Key, T>>>
-using umap = unordered_map<Key, T, Hash, Pred, Allocator>;
+template <class key,class hash=hash<key>,class pred=std::equal_to<key>,class alloc=allocator<key>>
+using uset=unordered_set<key,hash,pred,alloc>;
+template <class key,class val,class hash=hash<key>,class pred=std::equal_to<key>,class alloc=allocator<key>>
+using umap=unordered_map<key,val,hash,pred,alloc>;
 using str = string;
 using vi = vc<int>;
 using vb = vc<bool>;
 using pi = pair<int, int>;
 using vs = vc<str>;
-using si = set<int>;
-using mi = map<int,int>;
 using pqgp = pqg<pi>;
 using VI = vv<int>;
 using VB = vv<bool>;
