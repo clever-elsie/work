@@ -118,7 +118,7 @@ ostream& operator<<(ostream&dst,uintw val){
 	return dst;
 }
 
-istream& operator>>(istream&src,intw&val){
+istream& operator>>(istream&src,uintw&val){
 	val=0;
 	str s;cin>>s;
 	for(size_t i=0;i<s.size();i++)
@@ -128,5 +128,20 @@ istream& operator>>(istream&src,intw&val){
 			val = 0;
 			break;
 		}
+	return src;
+}
+
+istream& operator>>(istream&src,intw&val){
+	val=0;
+	str s;cin>>s;
+	bool is_neg = s.size() > 0 && s[0] == '-';
+	for(size_t i=is_neg;i<s.size();i++)
+		if('0'<=s[i]&&s[i]<='9')
+			val = 10*val + s[i]-'0';
+		else {
+			val = 0;
+			break;
+		}
+	if(is_neg) val*=-1;
 	return src;
 }
