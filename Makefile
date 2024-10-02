@@ -15,7 +15,7 @@ $(EXE): $(PP)
 	$(CC) $(PP) -o $(EXE)
 $(PP):
 	$(new)
-n: clean shm/in shm/out
+n: clean
 	$(new)
 	$(ED) $(PP)
 c:
@@ -33,6 +33,17 @@ $(OUT):
 	touch $(OUT)
 out: $(OUT)
 	$(ED) $(OUT)
+RAND_GEN_FILE = shm/b.cpp
+RAND_GEN = shm/b.out
+$(RAND_GEN_FILE):
+	cp ~/work/include/tools/resource/template.cpp $(RAND_GEN_FILE)
+rand_gen_file: $(RAND_GEN_FILE)
+	$(ED) $(RAND_GEN_FILE)
+$(RAND_GEN): $(RAND_GEN_FILE)
+	$(CC) $(RAND_GEN_FILE) -o $(RAND_GEN)
+gen: $(RAND_GEN)
+	$(RAND_GEN)
+
 
 sample_test = $(tools)sample_test.out
 sample_in_out = $(tools)sample_in.out
