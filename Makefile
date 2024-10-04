@@ -11,7 +11,7 @@ macro = $(tools)macro.out
 #C++
 all: $(EXE)
 	$(EXE)
-$(EXE): $(PP)
+$(EXE): $(PP) include/local.h
 	$(CC) $(PP) -o $(EXE)
 $(PP):
 	$(new)
