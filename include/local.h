@@ -137,8 +137,12 @@ _TP<UINT T> int lsb(T p){ return LSB(p); }
 _TP<SINT T> int lsb(T p){ return LSB(MUT<T>(p)); }
 
 namespace elsie_IO{
-	constexpr array<int32_t,5> ten_power{1,10,100,1000,10000};
+	constexpr array<int32_t,9> ten_power{1,10,100,1'000,10'000,100'000,1'000'000,10'000'000,100'000'000};
 	constexpr int32_t trans_IN[][10]={
+		{0,10000000,20000000,30000000,40000000,50000000,60000000,70000000,80000000,90000000},
+		{0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000},
+		{0,100000,200000,300000,400000,500000,600000,700000,800000,900000},
+		{0,10000,20000,30000,40000,50000,60000,70000,80000,90000},
 		{0,1000,2000,3000,4000,5000,6000,7000,8000,9000},
 		{0,100,200,300,400,500,600,700,800,900},
 		{0,10,20,30,40,50,60,70,80,90},
@@ -152,11 +156,11 @@ namespace elsie_IO{
 	concept signed_INT = signed_integral<T>&&!same_as<T, char>;
 	template <class T>
 	concept unsigned_INT = unsigned_integral<T>&&!same_as<T, char>;
-	constexpr size_t bsize = 1024*1024*16;
-	char ib[bsize];
+	constexpr size_t bsize = 1024*1024*8;
 	class CIO{
 		private:
 		ssize_t ic,oc,last;
+		char*ib,*ob;
 		ssize_t readbuf(){
 			last=read(STDIN_FILENO,ib,bsize);
 			ic=0;
@@ -164,7 +168,12 @@ namespace elsie_IO{
 			return last;
 		}
 		public:
-		CIO(){ ic=oc=last=0; }
+		CIO(){
+			ic=oc=last=0;
+			ob=(char*)malloc(bsize);
+			ib=(char*)malloc(bsize+1);
+		}
+		~CIO(){ flush(); }
 		CIO&operator>>(char&v){
 			do{
 				if(ic==last)
@@ -202,7 +211,7 @@ namespace elsie_IO{
 		CIO&operator>>(T&v){
 			flip s;
 			v=0;
-			int32_t buf[4];
+			int32_t buf[8];
 			size_t cache=0;
 			do{
 				if(ic==last)
@@ -219,14 +228,14 @@ namespace elsie_IO{
 				if(s.dat>9){
 					if(cache){
 						v*=ten_power[cache];
-						for(int i=4-cache,j=0;i<4;i++,j++)
+						for(int i=8-cache,j=0;i<8;i++,j++)
 							v+=trans_IN[i][buf[j]];
 					}
 					break;
 				}
 				buf[cache++]=s.dat;
-				if(cache==4){
-					v*=10000;
+				if(cache==8){
+					v*=100'000'000;
 					for(int i=0;i<4;i++)
 						v+=trans_IN[i][buf[i]];
 					cache=0;
@@ -239,7 +248,7 @@ namespace elsie_IO{
 			flip s;
 			bool minus=false;
 			v=0;
-			int32_t buf[4];
+			int32_t buf[8];
 			size_t cache=0;
 			do{
 				if(ic==last)
@@ -261,15 +270,15 @@ namespace elsie_IO{
 				if(s.dat>9){
 					if(cache){
 						v*=ten_power[cache];
-						for(int i=4-cache,j=0;i<4;i++,j++)
+						for(int i=8-cache,j=0;i<8;i++,j++)
 							v+=trans_IN[i][buf[j]];
 						if(minus)v=-v;
 					}
 					break;
 				}
 				buf[cache++]=s.dat;
-				if(cache==4){
-					v*=10000;
+				if(cache==8){
+					v*=100'000'000;
 					for(int i=0;i<4;i++)
 						v+=trans_IN[i][buf[i]];
 					cache=0;
@@ -277,6 +286,44 @@ namespace elsie_IO{
 			}while(++ic);
 			return *this;
 		}
+		void flush(){
+			if(oc){
+				ssize_t _ = write(STDOUT_FILENO,ob,oc);
+				oc=0;
+			}
+		}
+		CIO&operator<<(char v){
+			ob[oc++]=v;
+			if(oc==bsize){
+				ssize_t _ = write(STDOUT_FILENO,ob,oc);
+				oc=0;
+			}
+			return *this;
+		}
+		CIO&operator<<(string&v){
+			if(v.size()<=bsize){
+				if(v.size()+oc>bsize){
+					ssize_t _ = write(STDOUT_FILENO,ob,oc);
+					oc=0;
+				}
+				for(const auto&x:v)
+					ob[oc++]=x;
+				if(oc==bsize){
+					ssize_t _ = write(STDOUT_FILENO,ob,oc);
+					oc=0;
+				}
+			}else{
+				for(const auto&x:v){
+					ob[oc++]=x;
+					if(oc==bsize){
+						ssize_t _ = write(STDOUT_FILENO,ob,oc);
+						oc=0;
+					}
+				}
+			}
+			return *this;
+		}
+		CIO&operator<<(string&&v){ return *this<<static_cast<string&>(v); }
 	};
 }
 elsie_IO::CIO cio;
