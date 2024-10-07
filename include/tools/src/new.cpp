@@ -6,7 +6,7 @@ using namespace std;
 
 int main(){
 	list<string>t_buf;
-	ifstream ifs("/home/elsie/work/include/template.cpp");
+	ifstream ifs("/home/elsie/work/include/tools/resource/template.cpp");
 	string buf;
 	while(getline(ifs,buf)) t_buf.emplace_back(move(buf));
 	ifs.close();

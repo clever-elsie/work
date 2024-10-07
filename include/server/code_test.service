@@ -1,0 +1,11 @@
+[Unit]
+Description = home-server-cpp
+After=network.target
+
+[Service]
+User=elsie
+WorkingDirectory=/home/elsie/work/include/server/
+ExecStart =/home/elsie/work/include/server/main.out
+Restart = always
+[Install]
+WantedBy = multi-user.target

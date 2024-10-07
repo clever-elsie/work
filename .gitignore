@@ -1,7 +1,8 @@
 .vscode
-include/ac-library
-include/*.out
-include/*.gch
 lib_Clever_Elsie
 shm
-set_clib
+E869120
+include/*.gch
+include/ac-library
+include/tools/exe/*.out
+include/server/*.out

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Code test</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<style>
+		body{ background-color: black; }
+		textarea{
+			background-color: white;
+			color: black;
+			font-family:'Courier New', Courier, monospace;
+			font-size: 24px;
+		}
+		button{
+			padding-top: 2em;
+			padding-bottom: 2em;
+			padding-left:2em;
+			padding-right: 2em;
+		}
+	</style>
+</head>
+
+<body>
+	<script src="script.js"></script>
+	<button onclick="setSample()">サンプル登録</button>
+	<span style="padding-left: 50%;">
+	<button onclick="clearField()" >クリア</button>
+	</span>
+	<div><textarea id="1" rows="6" cols="32"></textarea></div>
+	<div><textarea id="2" rows="6" cols="32"></textarea></div>
+	<div><textarea id="3" rows="6" cols="32"></textarea></div>
+	<div><textarea id="4" rows="6" cols="32"></textarea></div>
+	<div><textarea id="5" rows="6" cols="32"></textarea></div>
+	<div><textarea id="6" rows="6" cols="32"></textarea></div>
+	<div><textarea id="7" rows="6" cols="32"></textarea></div>
+	<details>
+		<summary>signal</summary>
+		<table>
+			<tr>ID</td>
+				<td>シグナル</td>
+				<td>コメント</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>SIGHUP</td>
+				<td>制御端末のハングアップ検出、または制御しているプロセスの死</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>SIGINT</td>
+				<td>キーボードからの割り込み</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>SIGQUIT</td>
+				<td>キーボードによる中止</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>SIGILL</td>
+				<td>不正な命令</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>SIGTRAP</td>
+				<td>トレース/ブレークポイント トラップ, IOT トラップ。SIGABRT と同義</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>SIGABRT</td>
+				<td>abort(3) からの中断シグナル</td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>SIGBUS</td>
+				<td>バスエラー(不正なメモリアクセス)</td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>SIGFPE</td>
+				<td>浮動小数点例外</td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>SIGKILL</td>
+				<td>Killシグナル</td>
+			</tr>
+			<tr>
+				<td>10</td>
+				<td>SIGUSR1</td>
+				<td>ユーザ定義シグナル 1</td>
+			</tr>
+			<tr>
+				<td>11</td>
+				<td>SIGSEGV</td>
+				<td>不正なメモリ参照</td>
+			</tr>
+			<tr>
+				<td>12</td>
+				<td>SIGUSR2</td>
+				<td>ユーザ定義シグナル 2</td>
+			</tr>
+			<tr>
+				<td>13</td>
+				<td>SIGPIPE</td>
+				<td>パイプ破壊:読み手の無いパイプへの書き出し</td>
+			</tr>
+			<tr>
+				<td>14</td>
+				<td>SIGALRM</td>
+				<td>alarm(2)からのタイマーシグナル</td>
+			</tr>
+			<tr>
+				<td>15</td>
+				<td>SIGTERM</td>
+				<td>終了シグナル</td>
+			</tr>
+			<tr>
+				<td>16</td>
+				<td>SIGSTKFLT</td>
+				<td>数値演算プロセッサにおけるスタックフォルト</td>
+			</tr>
+			<tr>
+				<td>17</td>
+				<td>SIGCHLD</td>
+				<td>子プロセスの一時停止または終了</td>
+			</tr>
+			<tr>
+				<td>18</td>
+				<td>SIGCONT</td>
+				<td>一時停止からの再開</td>
+			</tr>
+			<tr>
+				<td>19</td>
+				<td>SIGSTOP</td>
+				<td>プロセスの一時停止</td>
+			</tr>
+			<tr>
+				<td>20</td>
+				<td>SIGTSTP</td>
+				<td>端末より入力された一時停止</td>
+			</tr>
+			<tr>
+				<td>21</td>
+				<td>SIGTTIN</td>
+				<td>バックグランドプロセスの端末入力</td>
+			</tr>
+			<tr>
+				<td>22</td>
+				<td>SIGTTOU</td>
+				<td>バックグランドプロセスの端末出力</td>
+			</tr>
+			<tr>
+				<td>23</td>
+				<td>SIGURG</td>
+				<td>ソケットの緊急事態</td>
+			</tr>
+			<tr>
+				<td>24</td>
+				<td>SIGXCPU</td>
+				<td>CPU時間制限超過</td>
+			</tr>
+			<tr>
+				<td>25</td>
+				<td>SIGXFSZ</td>
+				<td>ファイルサイズ制限の超過</td>
+			</tr>
+			<tr>
+				<td>26</td>
+				<td>SIGVTALRM</td>
+				<td>仮想アラームクロック</td>
+			</tr>
+			<tr>
+				<td>27</td>
+				<td>SIGPROF</td>
+				<td>profilingタイマの時間切れ</td>
+			</tr>
+			<tr>
+				<td>28</td>
+				<td>SIGWINCH</td>
+				<td>ウィンドウリサイズ シグナル</td>
+			</tr>
+			<tr>
+				<td>29</td>
+				<td>SIGIO</td>
+				<td>入出力が可能になった</td>
+			</tr>
+			<tr>
+				<td>30</td>
+				<td>SIGPWR</td>
+				<td>電源喪失</td>
+			</tr>
+			<tr>
+				<td>31</td>
+				<td>SIGSYS</td>
+				<td>ルーチンへの引き数が不正</td>
+			</tr>
+		</table>
+	</details>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+
+</html>
