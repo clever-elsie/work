@@ -36,6 +36,7 @@ _TP<class s, class t> struct gnu_map : public __gnu_map<s, t> {
 #define mp(f, s) make_pair(f, s)
 #define A(a) begin(a), end(a)
 #define I(a, i) begin(a), begin(a) + i
+#define elif(c) else if(c)
 _TP<class s> _US gnu_set = gnu_map<s, null_type>;
 _TP<class f> _US vc = vector<f>;
 _TP<class f> _US vv = vc<vc<f>>;
