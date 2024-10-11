@@ -37,9 +37,10 @@ _TP<class s, class t> struct gnu_map : public __gnu_map<s, t> {
 #define A(a) begin(a), end(a)
 #define I(a, i) begin(a), begin(a) + i
 #define elif(c) else if(c)
-#define rep(i,f,n) for(int i=0;i<n;i++)
-#define reps(i,n,s) for(int i=0;i<n;i+=s)
-#define rrep(i,n,t) for(int i=n;i>=t;i--)
+#define rp(i,f,n) for(int i=f;i<n;i++)
+#define rps(i,f,n,s) for(int i=f;i<n;i+=s)
+#define rrp(i,n,t) for(int i=n;i>=t;i--)
+#define rrps(i,n,t,s) for(int i=n;i>=t;i-=s)
 #define iter(i,a) for(auto&i:a)
 #define citer(i,a) for(const auto&i:a)
 _TP<class s> _US gnu_set = gnu_map<s, null_type>;
