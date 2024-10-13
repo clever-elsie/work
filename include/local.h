@@ -84,7 +84,7 @@ _CC array<unsigned, 6> mods{998244353,	998244853, 1000000007, 1000000009, 100000
 inline int ceil(_CT int a, const int b) { return (a + b - 1) / b; }
 inline int floor(const int a, const int b) { return a / b - (a % b && (a ^ b) < 0); }
 static char _O128B[128];
-pair<char*, size_t> _O128(uintw tmp) {
+pair<char*, ssize_t> _O128(uintw tmp) {
 	char*d=end(_O128B);
 	do {
 		*(--d) = "0123456789"[tmp % 10];
