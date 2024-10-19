@@ -119,33 +119,36 @@ _TP<integral T> void _I128(str &s, size_t i, T &val) requires(sizeof(T) > 8) {
 	}
 }
 istream &operator>>(istream &src, uintw &val) {
-	str s;cin>>s;
+	str s;src>>s;
 	_I128(s, 0, val);
 	return src;
 }
 istream &operator>>(istream &src, intw &val) {
-	str s;cin>>s;
+	str s;src>>s;
 	bool is_neg=s.size()>0&&s[0]=='-';
 	_I128(s, is_neg, val);
 	if (is_neg) val*=-1;
 	return src;
 }
-#define UINT unsigned_integral
-#define SINT signed_integral
+
 #define MUT make_unsigned_t
-#define PPCNT popcount
-#define MSB countl_zero
-#define LSB countr_zero
-_TP<UINT T> int pcnt(T p){ return PPCNT(p); }
-_TP<SINT T> int pcnt(T p){ return PPCNT(MUT<T>(p)); }
-_TP<UINT T> int zcnt(T p){ return MSB(p); }
-_TP<SINT T> int zcnt(T p){ return MSB(MUT<T>(p)); }
-_TP<UINT T> int lsb(T p){ return LSB(p); }
-_TP<SINT T> int lsb(T p){ return LSB(MUT<T>(p)); }
+_TP<integral T> int pcnt(T p){ return popcount(MUT<T>(p)); }
+_TP<integral T> int lsb(T p){ return countl_zero(MUT<T>(p)); }
+_TP<integral T> int msb(T p){ return countr_zero(MUT<T>(p)); }
 
 void IOset(){
 	cin.tie(0);
 	cout.tie(0);
 	ios_base::sync_with_stdio(0);
 	cout<<fixed<<setprecision(15);
+}
+_TP<class T>void getv(vc<T>&a){ for(auto&x:a)cin>>x; }
+void putv(vc<str>&a){ for(const auto&x:a) cout<<x<<endl; }
+_TP<class T>void putv(vc<T>&a){ for(const auto&x:a)cout<<x<<" "; cout<<endl; }
+_TP<class T>void putvv(vv<T>&a){
+	for(const auto&row:a){
+		for(const auto&el:row)
+			cout<<el<<" ";
+		cout<<endl;
+	}
 }
