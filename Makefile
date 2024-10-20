@@ -63,3 +63,6 @@ g:
 LOCALH = ~/work/include/local.h
 local:
 	$(CC) $(LOCALH) -o $(LOCALH).gch
+ACLEXPAND = $(tools)acl.out
+acl: $(PP)
+	$(macro) | $(ACLEXPAND) | clip.exe

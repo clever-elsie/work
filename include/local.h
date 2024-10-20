@@ -83,6 +83,7 @@ _CC array<pi, 8> dc = {{{1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {1, -1}, {-1, 
 _CC array<unsigned, 6> mods{998244353,	998244853, 1000000007, 1000000009, 1000000021, 1000000033};
 inline int ceil(_CT int a, const int b) { return (a + b - 1) / b; }
 inline int floor(const int a, const int b) { return a / b - (a % b && (a ^ b) < 0); }
+_TP<class T> concept Lint = is_integral_v<T> && sizeof(T)>8;
 static char _O128B[128];
 pair<char*, ssize_t> _O128(uintw tmp) {
 	char*d=end(_O128B);
@@ -92,7 +93,8 @@ pair<char*, ssize_t> _O128(uintw tmp) {
 	} while (tmp != 0);
 	return {d,end(_O128B) - d};
 }
-ostream &operator<<(ostream &dst, intw val) {
+_TP<Lint T>
+ostream &operator<<(ostream &dst, T val) {
 	ostream::sentry s(dst);
 	if (s) {
 		auto [d, len] = _O128(val < 0 ? -val : val);
@@ -103,30 +105,14 @@ ostream &operator<<(ostream &dst, intw val) {
 	}
 	return dst;
 }
-ostream &operator<<(ostream &dst, uintw val) {
-	ostream::sentry s(dst);
-	if (s) {
-		auto [d, len] = _O128(val);
-		if (dst.rdbuf()->sputn(d, len) != len)
-			dst.setstate(ios_base::badbit);
-	}
-	return dst;
-}
-_TP<integral T> void _I128(str &s, size_t i, T &val) requires(sizeof(T) > 8) {
-	for(val=0;const auto&x:s|views::drop(i)){
-		assert('0'<=x&&x<='9');
+_TP<Lint T>
+istream &operator>>(istream &src, T &val) {
+	str s;src>>s;
+	bool is_neg=numeric_limits<T>::is_signed&&s.size()>0&&s[0]=='-';
+	for(val=0;const auto&x:s|views::drop(is_neg)){
+		// assert('0'<=x&&x<='9');
 		val=10*val+x-'0';
 	}
-}
-istream &operator>>(istream &src, uintw &val) {
-	str s;src>>s;
-	_I128(s, 0, val);
-	return src;
-}
-istream &operator>>(istream &src, intw &val) {
-	str s;src>>s;
-	bool is_neg=s.size()>0&&s[0]=='-';
-	_I128(s, is_neg, val);
 	if (is_neg) val*=-1;
 	return src;
 }
