@@ -51,8 +51,8 @@ _TP<class f> _US v4 = vv<vv<f>>;
 _TP<class f> _US gr = greater<f>;
 _TP<class f> _US pq = priority_queue<f>;
 _TP<class f> _US pqg = priority_queue<f, vc<f>, gr<f>>;
-#define int int64_t
-#define itn int64_t
+#define int long long
+#define itn long long
 #define uset unordered_set
 #define umap unordered_map
 _US i8 = int8_t;
