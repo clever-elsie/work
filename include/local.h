@@ -6,7 +6,9 @@
 #define _TP template
 #define _CT const
 #define _CC constexpr
+#define _CS class
 #define _US using
+#define _IG integral
 _US namespace std;
 namespace vies = std::views;
 _US std::cin;
@@ -16,10 +18,10 @@ _US namespace atcoder;
 _US mint = modint998244353;
 _US mint1 = modint1000000007;
 _US namespace __gnu_pbds;
-_TP<class s, class t> _US __gnu_map = tree<s, t, less<s>, rb_tree_tag, tree_order_statistics_node_update>;
-_TP<class s, class t> struct gnu_map : public __gnu_map<s, t> {
+_TP<_CS s, _CS t> _US __gnu_map = tree<s, t, less<s>, rb_tree_tag, tree_order_statistics_node_update>;
+_TP<_CS s, _CS t> struct gnu_map : public __gnu_map<s, t> {
 	_US iterator = typename __gnu_map<s, t>::iterator;
-	_TP<integral T> iterator operator[](T i) { return this->find_by_order(i); }
+	_TP<_IG T> iterator operator[](T i) { return this->find_by_order(i); }
 };
 #define fi first
 #define se second
@@ -43,14 +45,14 @@ _TP<class s, class t> struct gnu_map : public __gnu_map<s, t> {
 #define rrps(i,n,t,s) for(int i=n;i>=t;i-=s)
 #define iter(i,a) for(auto&i:a)
 #define citer(i,a) for(const auto&i:a)
-_TP<class s> _US gnu_set = gnu_map<s, null_type>;
-_TP<class f> _US vc = vector<f>;
-_TP<class f> _US vv = vc<vc<f>>;
-_TP<class f> _US v3 = vv<vc<f>>;
-_TP<class f> _US v4 = vv<vv<f>>;
-_TP<class f> _US gr = greater<f>;
-_TP<class f> _US pq = priority_queue<f>;
-_TP<class f> _US pqg = priority_queue<f, vc<f>, gr<f>>;
+_TP<_CS s> _US gnu_set = gnu_map<s, null_type>;
+_TP<_CS f> _US vc = vector<f>;
+_TP<_CS f> _US vv = vc<vc<f>>;
+_TP<_CS f> _US v3 = vv<vc<f>>;
+_TP<_CS f> _US v4 = vv<vv<f>>;
+_TP<_CS f> _US gr = greater<f>;
+_TP<_CS f> _US pq = priority_queue<f>;
+_TP<_CS f> _US pqg = priority_queue<f, vc<f>, gr<f>>;
 #define int long long
 #define itn long long
 #define uset unordered_set
@@ -81,9 +83,9 @@ _CC int inf = 1ll << 60;
 _CC int minf = -inf;
 _CC array<pi, 8> dc = {{{1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}}};
 _CC array<unsigned, 6> mods{998244353,	998244853, 1000000007, 1000000009, 1000000021, 1000000033};
-inline int ceil(_CT int a, const int b) { return (a + b - 1) / b; }
-inline int floor(const int a, const int b) { return a / b - (a % b && (a ^ b) < 0); }
-_TP<class T> concept Lint = is_integral_v<T> && sizeof(T)>8;
+inline intw ceil(_CT intw a, const intw b) { return (a + b - 1) / b; }
+inline intw floor(const intw a, const intw b) { return a / b - (a % b && (a ^ b) < 0); }
+_TP<_CS T> concept Lint = is_integral_v<T> && sizeof(T)>8;
 static char _O128B[128];
 pair<char*, ssize_t> _O128(uintw tmp) {
 	char*d=end(_O128B);
@@ -118,9 +120,9 @@ istream &operator>>(istream &src, T &val) {
 }
 
 #define MUT make_unsigned_t
-_TP<integral T> int pcnt(T p){ return popcount(MUT<T>(p)); }
-_TP<integral T> int lsb(T p){ return countl_zero(MUT<T>(p)); }
-_TP<integral T> int msb(T p){ return countr_zero(MUT<T>(p)); }
+_TP<_IG T> i32 pcnt(T p){ return popcount(MUT<T>(p)); }
+_TP<_IG T> i32 lsb(T p){ return countl_zero(MUT<T>(p)); }
+_TP<_IG T> i32 msb(T p){ return countr_zero(MUT<T>(p)); }
 
 void IOset(){
 	cin.tie(0);
@@ -128,13 +130,16 @@ void IOset(){
 	ios_base::sync_with_stdio(0);
 	cout<<fixed<<setprecision(15);
 }
-_TP<class T>void getv(vc<T>&a){ for(auto&x:a)cin>>x; }
-void putv(vc<str>&a){ for(const auto&x:a) cout<<x<<endl; }
-_TP<class T>void putv(vc<T>&a){ for(const auto&x:a)cout<<x<<" "; cout<<endl; }
-_TP<class T>void putvv(vv<T>&a){
-	for(const auto&row:a){
-		for(const auto&el:row)
-			cout<<el<<" ";
-		cout<<endl;
+_TP<_CS T> void getv(vc<T> &a) { iter(x, a) cin >> x; }
+_TP<_CS T> void getvv(vv<T> &a) { iter(y, a) iter(x, y) cin >> x; }
+void putv(vc<str> &a) { citer(x, a) cout << x << endl; }
+_TP<_CS T> void putv(vc<T> &a) {
+	citer(x, a) cout << x << ' ';
+	cout << endl;
+}
+_TP<_CS T> void putvv(vv<T> &a) {
+	citer(y, a) {
+		citer(x, y) cout << x << " ";
+		cout << endl;
 	}
 }
