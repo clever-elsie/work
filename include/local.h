@@ -77,53 +77,47 @@ _US vs = vc<str>;
 _US VI = vv<int>;
 _US VB = vv<bool>;
 _US pqgp = pqg<pi>;
-_CC str yes{"Yes\n"};
-_CC str no{"No\n"};
 _CC int inf = 1ll << 60;
 _CC int minf = -inf;
 _CC array<pi, 8> dc = {{{1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}}};
-_CC array<unsigned, 6> mods{998244353,	998244853, 1000000007, 1000000009, 1000000021, 1000000033};
-inline intw ceil(_CT intw a, const intw b) { return (a + b - 1) / b; }
-inline intw floor(const intw a, const intw b) { return a / b - (a % b && (a ^ b) < 0); }
+_CC array<u32, 6> mods{998244353,	998244853, 1000000007, 1000000009, 1000000021, 1000000033};
+_TP<_IG T> inline T ceil(_CT T a,_CT T b) { return (a + b - 1) / b; }
+_TP<_IG T> inline T floor(_CT T a,_CT T b) { return a / b - (a % b && (a ^ b) < 0); }
+_CC void yes(){cout<<"Yes\n";}
+_CC void no(){cout<<"No\n";}
+void yn(bool c){ c?yes():no(); }
 _TP<_CS T> concept Lint = is_integral_v<T> && sizeof(T)>8;
-static char _O128B[128];
-pair<char*, ssize_t> _O128(uintw tmp) {
-	char*d=end(_O128B);
-	do {
-		*(--d) = "0123456789"[tmp % 10];
-		tmp /= 10;
-	} while (tmp != 0);
-	return {d,end(_O128B) - d};
-}
-_TP<Lint T>
-ostream &operator<<(ostream &dst, T val) {
+_TP<Lint T> ostream &operator<<(ostream &dst, T val) {
 	ostream::sentry s(dst);
-	if (s) {
-		auto [d, len] = _O128(val < 0 ? -val : val);
-		if (val < 0)
-			*(--d) = '-', len++;
-		if (dst.rdbuf()->sputn(d, len) != len)
-			dst.setstate(ios_base::badbit);
-	}
+	if (!s) return dst;
+	char _O128[48];
+	bool vsign = val<0;
+	if(vsign) val=-val;
+	char*d=_O128+128;
+	do {
+		*(--d) = "0123456789"[val % 10];
+		val /= 10;
+	} while (val != 0);
+	size_t len = _O128+128-d;
+	if (vsign) *(--d) = '-', len++;
+	if (dst.rdbuf()->sputn(d, len) != len)
+		dst.setstate(ios_base::badbit);
 	return dst;
 }
-_TP<Lint T>
-istream &operator>>(istream &src, T &val) {
+_TP<Lint T> istream &operator>>(istream &src, T &val) {
 	str s;src>>s;
 	bool is_neg=numeric_limits<T>::is_signed&&s.size()>0&&s[0]=='-';
-	for(val=0;const auto&x:s|views::drop(is_neg)){
+	for(val=0;_CT auto&x:s|views::drop(is_neg)){
 		// assert('0'<=x&&x<='9');
 		val=10*val+x-'0';
 	}
 	if (is_neg) val*=-1;
 	return src;
 }
-
 #define MUT make_unsigned_t
 _TP<_IG T> i32 pcnt(T p){ return popcount(MUT<T>(p)); }
 _TP<_IG T> i32 lsb(T p){ return countl_zero(MUT<T>(p)); }
 _TP<_IG T> i32 msb(T p){ return countr_zero(MUT<T>(p)); }
-
 void IOset(){
 	cin.tie(0);
 	cout.tie(0);
@@ -142,4 +136,10 @@ _TP<_CS T> void putvv(vv<T> &a) {
 		citer(x, y) cout << x << " ";
 		cout << endl;
 	}
+}
+_TP<i32 N,_IG T> void putbit(T s,char sep='\n'){
+	char buf[N+1]={0};
+	for(char*itr=buf+N-1;itr>=buf;itr--,s>>=1)
+		*itr='0'+(s&1);
+	cout<<buf<<sep;
 }
