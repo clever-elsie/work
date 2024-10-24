@@ -83,23 +83,31 @@ _CC array<pi, 8> dc = {{{1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {1, -1}, {-1, 
 _CC array<u32, 6> mods{998244353,	998244853, 1000000007, 1000000009, 1000000021, 1000000033};
 _TP<_IG T> inline T ceil(_CT T a,_CT T b) { return (a + b - 1) / b; }
 _TP<_IG T> inline T floor(_CT T a,_CT T b) { return a / b - (a % b && (a ^ b) < 0); }
-_CC void yes(){cout<<"Yes\n";}
-_CC void no(){cout<<"No\n";}
+void yes(){cout<<"Yes\n";}
+void no(){cout<<"No\n";}
 void yn(bool c){ c?yes():no(); }
 _TP<_CS T> concept Lint = is_integral_v<T> && sizeof(T)>8;
 _TP<Lint T> ostream &operator<<(ostream &dst, T val) {
 	ostream::sentry s(dst);
 	if (!s) return dst;
-	char _O128[48];
+	char _O128[64];
 	bool vsign = val<0;
-	if(vsign) val=-val;
-	char*d=_O128+128;
+	if(vsign){
+		if (val == numeric_limits<T>::min()) {
+			const char *minVal = "-170141183460469231731687303715884105728";
+			if (dst.rdbuf()->sputn(minVal, 40) != 40) // min値を直接出力
+				dst.setstate(std::ios_base::badbit);
+			return dst;
+		}
+		val=(~val)+1;
+	}
+	char*d=end(_O128);
 	do {
 		*(--d) = "0123456789"[val % 10];
 		val /= 10;
 	} while (val != 0);
-	size_t len = _O128+128-d;
-	if (vsign) *(--d) = '-', len++;
+	if (vsign) *(--d) = '-';
+	size_t len = end(_O128)-d;
 	if (dst.rdbuf()->sputn(d, len) != len)
 		dst.setstate(ios_base::badbit);
 	return dst;
