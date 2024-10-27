@@ -36,7 +36,7 @@ template<class s,class t>struct gnu_map:public __gnu_map<s,t> {
 #define A(a) begin(a),end(a)
 #define I(a,i) begin(a),begin(a)+i
 #define elif(c) else if(c)
-#define _REP1(n) for(int _=0;i<n;i++)
+#define _REP1(n) for(int _=0;_<n;_++)
 #define _REP2(i,n) for(int i=0;i<n;i++)
 #define _REP3(i,s,n) for(int i=s;i<n;i++)
 #define _REP4(i,s,n,step) for(int i=s;i<n;i+=step)
