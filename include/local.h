@@ -145,14 +145,14 @@ void IOset(){
 }
 _TP<_CS T>void getv(vc<T>&a){iter(x,a)cin>>x;}
 _TP<_CS T>void getvv(vv<T>&a){iter(y,a)iter(x,y)cin>>x;}
-void putv(vc<str>&a){citer(x,a)cout<<x<<endl;}
+void putv(vc<str>&a){cter(x,a)cout<<x<<endl;}
 _TP<_CS T> void putv(vc<T>&a){
-	citer(x,a)cout<<x<<' ';
+	cter(x,a)cout<<x<<' ';
 	cout<<endl;
 }
 _TP<_CS T>void putvv(vv<T>&a){
-	citer(y,a){
-		citer(x,y)cout<<x<<" ";
+	cter(y,a){
+		cter(x,y)cout<<x<<" ";
 		cout<<endl;
 	}
 }
