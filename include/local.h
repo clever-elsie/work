@@ -142,12 +142,21 @@ template<class T>void _getv(vc<T>&a){iter(x,a)cin>>x;}
 template<class T>void _getv(vv<T>&a){iter(y,a)iter(x,y)cin>>x;}
 template<class T>void getv(T&a){_getv(a);}
 template<class T,class... Ts>void getv(T&a,Ts&... b){_getv(a);getv(b...);}
+
 template<class T>void _putv(T&a){cout<<a;}
 void _putv(vc<str>&a){cter(x,a)cout<<x<<endl;}
 template<class T>void _putv(vc<T>&a){cter(x,a)cout<<x<<' ';cout<<endl;}
 template<class T>void _putv(vv<T>&a){cter(y,a){cter(x,y)cout<<x<<' ';cout<<endl;}}
 template<class T>void putv(T&a){_putv(a);cout<<endl;}
 template<class T,class... Ts>void putv(T&a,Ts&... b){_putv(a);cout<<' ';putv(b...);}
+
+template<class T>void _putv(T&&a){_putv(static_cast<T&>(a));}
+void _putv(vc<str>&&a){_putv(static_cast<vc<str>&>(a));}
+template<class T>void _putv(vc<T>&&a){_putv(static_cast<vc<T>&>(a));}
+template<class T>void _putv(vv<T>&&a){_putv(static_cast<vv<T>&>(a));}
+template<class T>void putv(T&&a){putv(static_cast<T&>(a));}
+template<class... T>void putv(T&&... a){(putv(static_cast<T&&>(a)),...);}
+
 template<i32 N,integral T> void putbit(T s,char sep='\n'){
 	char buf[N+1]={0};
 	for(char*itr=buf+N-1;itr>=buf;itr--,s>>=1)
