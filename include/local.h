@@ -50,7 +50,7 @@ template<class s,class t>struct gnu_map:public __gnu_map<s,t> {
 #define _REP(_1,_2,_3,_4,name,...) name
 #define rep(...) _REP(__VA_ARGS__,_REP4,_REP3,_REP2,_REP1)(__VA_ARGS__)
 #define rrep(...) _REP(__VA_ARGS__,_RREP4,_RREP3,_RREP2,_REP1)(__VA_ARGS__)
-#define forif(c,...) rep(...)if(c)
+#define forif(c,...) rep(__VA_ARGS__)if(c)
 #define _ITER(_1,_2,_3,name,...) name
 #define iter(...) _ITER(__VA_ARGS__,_ITER3,_ITER2)(__VA_ARGS__)
 #define cter(...) _ITER(__VA_ARGS__,constER3,constER2)(__VA_ARGS__)
