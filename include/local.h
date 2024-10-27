@@ -36,6 +36,7 @@ _TP<_CS s,_CS t>struct gnu_map:public __gnu_map<s,t> {
 #define pp() pop()
 #define ins(a) insert(a)
 #define emp(a) emplace(a)
+#define cont(a) contains(a)
 #define mp(f,s) make_pair(f,s)
 #define A(a) begin(a),end(a)
 #define I(a,i) begin(a),begin(a)+i
