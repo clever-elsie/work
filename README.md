@@ -47,6 +47,9 @@ include/setup.shから必要な部分をコメント外しして、環境を構�
 意図は伝わると思うが明示しておくと、work直下に`/dev/shm`へのシンボリックリンクを追加する。  
 `echo`の部分は動作確認をしていない。  
 `vim`などで直接記述したほうが良い。  
+サーバーを使うために`include/tools/server`にある`default`の内容を`/etc/nginx/sites-available/default`に重複部分を除いてコピーする。  
+そのために`default`には必要最小限のことのみを書いているが、`nginx`側の`default`の内容を削除する必要はない。  
+`include/tools/server`にある`code_test.service`は`/etc/systemd/system`の中にコピーして`sudo systemctl enable code_test && sudo systemctl start code_test`とすると、サーバーがサーバープログラムが有効になる。  
 `~/.bashrc`に以下を記述し、`source ~/.bashrc`する。
 ```
 export PS1="\[\e[1;32m\]\w \[\e[0m\]\$"
