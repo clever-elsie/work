@@ -55,10 +55,12 @@ template<class s,class t>struct gnu_map:public __gnu_map<s,t> {
 #define iter(...) _ITER(__VA_ARGS__,_ITER3,_ITER2)(__VA_ARGS__)
 #define cter(...) _ITER(__VA_ARGS__,_CTER3,_CTER2)(__VA_ARGS__)
 #define acm(a,s) accumulate(A(a),s)
+#define nxpm(a) next_permutation(A(a))
 #define uni(a) a.erase(unique(A(a)),a.end())
 #define DR(i) views::drop(i)
 #define TK(i) views::take(i)
 #define RV views::reverse
+#define IOTA vies::iota
 #define NL cout<<'\n'
 template<class s>using gnu_set=gnu_map<s,null_type>;
 template<class f>using vc=vector<f>;
