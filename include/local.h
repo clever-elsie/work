@@ -134,11 +134,6 @@ template<Lint T>istream&operator>>(istream&src,T&val) {
 template<integral T>i32 pcnt(T p){return popcount(MUT<T>(p));}
 template<integral T>i32 lsb(T p){return countl_zero(MUT<T>(p));}
 template<integral T>i32 msb(T p){return countr_zero(MUT<T>(p));}
-void IOset(){
-	cin.tie(0),cout.tie(0);
-	ios_base::sync_with_stdio(0);
-	cout<<fixed<<setprecision(15);
-}
 template<class T>void _getv(T&a){cin>>a;}
 template<class T>void _getv(vc<T>&a){iter(x,a)cin>>x;}
 template<class T>void _getv(vv<T>&a){iter(y,a)iter(x,y)cin>>x;}
@@ -164,4 +159,11 @@ template<i32 N,integral T> void putbit(T s,char sep='\n'){
 	for(char*itr=buf+N-1;itr>=buf;itr--,s>>=1)
 		*itr='0'+(s&1);
 	cout<<buf<<sep;
+}
+void slv();
+int32_t main(){
+	cin.tie(0),cout.tie(0);
+	ios_base::sync_with_stdio(0);
+	cout<<fixed<<setprecision(15);
+	slv();
 }

@@ -1,6 +1,5 @@
 #include <local.h>
 
-signed main() {
-	IOset();
+void slv(){
 	
 }
