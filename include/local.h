@@ -34,15 +34,15 @@ template<class s,class t>struct gnu_map:public __gnu_map<s,t> {
 #define cont(a) contains(a)
 #define mp(f,s) make_pair(f,s)
 #define A(a) begin(a),end(a)
-#define I(a,i) begin(a),begin(a)+i
+#define I(a,i) begin(a),begin(a)+(i)
 #define elif(c) else if(c)
-#define _REP1(n) for(int _=0;_<n;_++)
-#define _REP2(i,n) for(int i=0;i<n;i++)
-#define _REP3(i,s,n) for(int i=s;i<n;i++)
-#define _REP4(i,s,n,step) for(int i=s;i<n;i+=step)
-#define _RREP2(i,n) for(int i=n;i>=0;i--)
-#define _RREP3(i,n,t) for(int i=n;i>=t;i--)
-#define _RREP4(i,n,t,s) for(int i=n;i>=t;i-=s)
+#define _REP1(n) for(int _=0;_<(n);_++)
+#define _REP2(i,n) for(int i=0;i<(n);i++)
+#define _REP3(i,s,n) for(int i=(s);i<(n);i++)
+#define _REP4(i,s,n,step) for(int i=(s);i<(n);i+=(step))
+#define _RREP2(i,n) for(int i=(n);i>=0;i--)
+#define _RREP3(i,n,t) for(int i=(n);i>=(t);i--)
+#define _RREP4(i,n,t,s) for(int i=(n);i>=(t);i-=(s))
 #define _ITER2(x,a) for(auto&x:a)
 #define _ITER3(x,y,a) for(auto&[x,y]:a)
 #define _CTER2(x,a) for(const auto&x:a)
@@ -72,26 +72,15 @@ template<class f>using pq=priority_queue<f>;
 template<class f>using pqg=priority_queue<f, vc<f>, gr<f>>;
 #define uset unordered_set
 #define umap unordered_map
-using i8=int8_t;
-using u8=uint8_t;
-using i16=int16_t;
-using u16=uint16_t;
-using i32=int32_t;
-using u32=uint32_t;
-using i64=int64_t;
-using u64=uint64_t;
-using intw=__int128_t;
-using uintw=__uint128_t;
-using f32=float;
-using f64=double;
-using vi=vc<int>;
-using vb=vc<bool>;
+using i8=int8_t; using i16=int16_t; using i32=int32_t; using i64=int64_t;
+using u8=uint8_t;using u16=uint16_t;using u32=uint32_t;using u64=uint64_t;
+using intw=__int128_t;using uintw=__uint128_t;
+using f32=float;using f64=double;
+using vi=vc<int>;using vb=vc<bool>;
 using pi=pair<int,int>;
-using str=string;
-using vs=vc<str>;
+using str=string;using vs=vc<str>;
 using pqgp=pqg<pi>;
-constexpr int inf=1ll<<60;
-constexpr int minf=-inf;
+constexpr int inf=1ll<<60,minf=-inf;
 constexpr array<pi,8>dc={{{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}}};
 constexpr array<u32,6> mods{998244353,998244853,1000000007,1000000009,1000000021,1000000033};
 template<integral T>inline T ceil(const T a,const T b){return(a+b-1)/b;}
@@ -139,21 +128,20 @@ template<class T>void _getv(vc<T>&a){iter(x,a)cin>>x;}
 template<class T>void _getv(vv<T>&a){iter(y,a)iter(x,y)cin>>x;}
 template<class T>void getv(T&a){_getv(a);}
 template<class T,class... Ts>void getv(T&a,Ts&... b){_getv(a);getv(b...);}
-
-template<class T>void _putv(T&a){cout<<a;}
-void _putv(vc<str>&a){cter(x,a)cout<<x<<endl;}
-template<class T>void _putv(vc<T>&a){cter(x,a)cout<<x<<' ';cout<<endl;}
-template<class T>void _putv(vv<T>&a){cter(y,a){cter(x,y)cout<<x<<' ';cout<<endl;}}
-template<class T>void putv(T&a){_putv(a);cout<<endl;}
-template<class T,class... Ts>void putv(T&a,Ts&... b){_putv(a);cout<<' ';putv(b...);}
-
-template<class T>void _putv(T&&a){_putv(static_cast<T&>(a));}
-void _putv(vc<str>&&a){_putv(static_cast<vc<str>&>(a));}
-template<class T>void _putv(vc<T>&&a){_putv(static_cast<vc<T>&>(a));}
-template<class T>void _putv(vv<T>&&a){_putv(static_cast<vv<T>&>(a));}
-template<class T>void putv(T&&a){putv(static_cast<T&>(a));}
-template<class... T>void putv(T&&... a){(putv(static_cast<T&&>(a)),...);}
-
+void _putv(const str&a){cout<<a<<endl;}
+void _putv(const vc<str>&a){cter(x,a)cout<<x<<endl;}
+template<class T>void _putv(const T&a){cout<<a;}
+template<class T>void _putv(const vc<T>&a){cter(x,a)cout<<x<<' ';cout<<endl;}
+template<class T>void _putv(const vv<T>&a){cter(y,a){cter(x,y)cout<<x<<' ';cout<<endl;}}
+template<class T>void putv(const T&a){_putv(a);cout<<endl;}
+template<class T,class... Ts>void putv(const T&a,const Ts&... b){_putv(a);cout<<' ';putv(b...);}
+void _putv(const str&&a){_putv(static_cast<const str&>(a));}
+void _putv(const vc<str>&&a){_putv(static_cast<const vc<str>&>(a));}
+template<class T>void _putv(const T&&a){_putv(static_cast<const T&>(a));}
+template<class T>void _putv(const vc<T>&&a){_putv(static_cast<const vc<T>&>(a));}
+template<class T>void _putv(const vv<T>&&a){_putv(static_cast<const vv<T>&>(a));}
+template<class T>void putv(const T&&a){putv(static_cast<const T&>(a));}
+template<class... T>void putv(const T&&... a){(putv(static_cast<const T&>(a)),...);}
 template<i32 N,integral T> void putbit(T s,char sep='\n'){
 	char buf[N+1]={0};
 	for(char*itr=buf+N-1;itr>=buf;itr--,s>>=1)
@@ -167,3 +155,4 @@ int32_t main(){
 	cout<<fixed<<setprecision(15);
 	slv();
 }
+
