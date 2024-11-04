@@ -89,6 +89,8 @@ template<integral T,integral U>inline
 auto floor(const T a,const U b){return a/b-(a%b&&(a^b)<0);}
 template<class T,class U>inline void chmax(T&a,U&b){if(a<b)a=b;}
 template<class T,class U>inline void chmin(T&a,U&b){if(a>b)a=b;}
+template<class T,class U>inline void chmax(T&a,U&&b){if(a<b)a=move(b);}
+template<class T,class U>inline void chmin(T&a,U&&b){if(a>b)a=move(b);}
 #define yes cout<<"Yes\n"
 #define no cout<<"No\n"
 #define yn(c) (c)?yes:no
