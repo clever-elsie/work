@@ -62,12 +62,12 @@ template<class s,class t>struct gnu_map:public __gnu_map<s,t> {
 #define RV views::reverse
 #define IOTA vies::iota
 #define NL cout<<'\n'
+template<class f>using gr=greater<f>;
 template<class s>using gnu_set=gnu_map<s,null_type>;
 template<class f>using vc=vector<f>;
 template<class f>using vv=vc<vc<f>>;
 template<class f>using v3=vv<vc<f>>;
 template<class f>using v4=vv<vv<f>>;
-template<class f>using gr=greater<f>;
 template<class f>using pq=priority_queue<f>;
 template<class f>using pqg=priority_queue<f, vc<f>, gr<f>>;
 #define uset unordered_set
@@ -83,8 +83,14 @@ using pqgp=pqg<pi>;
 constexpr int inf=1ll<<60,minf=-inf;
 constexpr array<pi,8>dc={{{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}}};
 constexpr array<u32,6> mods{998244353,998244853,1000000007,1000000009,1000000021,1000000033};
-template<integral T>inline T ceil(const T a,const T b){return(a+b-1)/b;}
-template<integral T>inline T floor(const T a,const T b){return a/b-(a%b&&(a^b)<0);}
+template<integral T,integral U>inline
+auto ceil(const T a,const T b) -> common_type<T,U>::type
+	{return(a+b-1)/b;}
+template<integral T,integral U>inline
+auto floor(const T a,const T b) -> common_type<T,U>::type
+	{return a/b-(a%b&&(a^b)<0);}
+template<class T,class U>inline void chmax(T&a,U&b){if(a<b)a=b;}
+template<class T,class U>inline void chmin(T&a,U&b){if(a>b)a=b;}
 #define yes cout<<"Yes\n"
 #define no cout<<"No\n"
 #define yn(c) (c)?yes:no
