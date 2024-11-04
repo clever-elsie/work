@@ -130,6 +130,9 @@ template<integral T>i32 pcnt(T p){return popcount(MUT<T>(p));}
 template<integral T>i32 lsb(T p){return countl_zero(MUT<T>(p));}
 template<integral T>i32 msb(T p){return countr_zero(MUT<T>(p));}
 template<class T>void _getv(T&a){cin>>a;}
+template<class T,class U>void _getv(pair<T,U>&a){cin>>a.fi>>a.se;}
+template<class T,class U>void _getv(vc<pair<T,U>>&a){iter(x,y,a)cin>>x>>y;}
+template<class T,class U>void _getv(vv<pair<T,U>>&a){iter(t,a)iter(x,y,t)cin>>x>>y;}
 template<class T>void _getv(vc<T>&a){iter(x,a)cin>>x;}
 template<class T>void _getv(vv<T>&a){iter(y,a)iter(x,y)cin>>x;}
 template<class T>void getv(T&a){_getv(a);}
@@ -139,6 +142,9 @@ void _putv(const vc<str>&a){cter(x,a)cout<<x<<endl;}
 template<class T>void _putv(const T&a){cout<<a;}
 template<class T>void _putv(const vc<T>&a){cter(x,a)cout<<x<<' ';cout<<endl;}
 template<class T>void _putv(const vv<T>&a){cter(y,a){cter(x,y)cout<<x<<' ';cout<<endl;}}
+template<class T>void _putv(const set<T>&a){cter(x,a)cout<<x<<' ';NL;}
+template<class T>void _putv(const multiset<T>&a){cter(x,a)cout<<x<<' ';NL;}
+template<class T>void _putv(const gnu_set<T>&a){cter(x,a)cout<<x<<' ';NL;}
 template<class T>void putv(const T&a){_putv(a);cout<<endl;}
 template<class T,class... Ts>void putv(const T&a,const Ts&... b){_putv(a);cout<<' ';putv(b...);}
 void _putv(const str&&a){_putv(static_cast<const str&>(a));}
@@ -146,6 +152,9 @@ void _putv(const vc<str>&&a){_putv(static_cast<const vc<str>&>(a));}
 template<class T>void _putv(const T&&a){_putv(static_cast<const T&>(a));}
 template<class T>void _putv(const vc<T>&&a){_putv(static_cast<const vc<T>&>(a));}
 template<class T>void _putv(const vv<T>&&a){_putv(static_cast<const vv<T>&>(a));}
+template<class T>void _putv(const set<T>&&a){_putv(static_cast<set<T>&>(a));}
+template<class T>void _putv(const multiset<T>&&a){_putv(static_cast<multiset<T>&>(a));}
+template<class T>void _putv(const gnu_set<T>&&a){_putv(static_cast<gnu_set<T>&>(a));}
 template<class T>void putv(const T&&a){putv(static_cast<const T&>(a));}
 template<class... T>void putv(const T&&... a){(putv(static_cast<const T&>(a)),...);}
 template<i32 N,integral T> void putbit(T s,char sep='\n'){

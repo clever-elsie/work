@@ -183,7 +183,7 @@ iterのconst版
 |pcnt(1)|popcount|
 |lsb(1)|最左ビット|
 |msb(1)|最右ビット|
-|getv(...)|前から順にstdinから受け取る|
-|putv(...)|stdoutに空白区切りで出力。stringとvectorは出力後改行|
+|getv(...)|前から順にstdinから受け取る。組込み型とstr,pair及びそれらのvc,vv|
+|putv(...)|stdoutに空白区切りで出力。stringとvectorは出力後改行。組込み型とstr及び、それらのvc,vv,set(multi,gnu)|
 |putbit\<N\>(1)|N桁のビットを出力|
 |iostream operator<<,>>|128bit出力可能、速度は不明|
