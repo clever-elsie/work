@@ -187,3 +187,7 @@ iterのconst版
 |putv(...)|stdoutに空白区切りで出力。stringとvectorは出力後改行。組込み型とstr及び、それらのvc,vv,set(multi,gnu)|
 |putbit\<N\>(1)|N桁のビットを出力|
 |iostream operator<<,>>|128bit出力可能、速度は不明|
+
+### 定義済み宣言
+INT(...) intを宣言して入力を受け取る
+STR(...) stringを宣言して入力を受け取る

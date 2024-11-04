@@ -62,6 +62,8 @@ template<class s,class t>struct gnu_map:public __gnu_map<s,t> {
 #define RV views::reverse
 #define IOTA vies::iota
 #define NL cout<<'\n'
+#define INT(...) int __VA_ARGS__;getv(__VA_ARGS__)
+#define STR(...) str __VA_ARGS__;getv(__VA_ARGS__)
 template<class f>using gr=greater<f>;
 template<class s>using gnu_set=gnu_map<s,null_type>;
 template<class f>using vc=vector<f>;
