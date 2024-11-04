@@ -84,11 +84,9 @@ constexpr int inf=1ll<<60,minf=-inf;
 constexpr array<pi,8>dc={{{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}}};
 constexpr array<u32,6> mods{998244353,998244853,1000000007,1000000009,1000000021,1000000033};
 template<integral T,integral U>inline
-auto ceil(const T a,const T b) -> common_type<T,U>::type
-	{return(a+b-1)/b;}
+auto ceil(const T a,const U b){return(a+b-1)/b;}
 template<integral T,integral U>inline
-auto floor(const T a,const T b) -> common_type<T,U>::type
-	{return a/b-(a%b&&(a^b)<0);}
+auto floor(const T a,const U b){return a/b-(a%b&&(a^b)<0);}
 template<class T,class U>inline void chmax(T&a,U&b){if(a<b)a=b;}
 template<class T,class U>inline void chmin(T&a,U&b){if(a>b)a=b;}
 #define yes cout<<"Yes\n"
