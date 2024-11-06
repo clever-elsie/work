@@ -70,6 +70,7 @@ alias acl='make acl'
 ```
 
 ## local.h
+()内の数字は引数の数
 ### 型エイリアス
 |型|説明|
 |-|-|
@@ -117,6 +118,7 @@ alias acl='make acl'
 |省略名|本体|
 |-|-|
 |sn(2)|" \n"[1==2]|
+|rsv(1)|reserve(1)|
 |pf,pb(1)|push_(back,front)(1)|
 |eb(1)|emplace_back(1)|
 |ppf,ppb,pp|pop(_front,_back)()|
@@ -131,6 +133,9 @@ alias acl='make acl'
 |rrep(...)|次節|
 |iter(...)|次節|
 |cter(...)|次節|
+|rev(1)|reverse([begin,end))|
+|minel(1)|min_element([begin,end))|
+|maxel(1)|max_element([begin,end))|
 |acm(2)|配列の総和|
 |nxpm(1)|順列全探索|
 |uni(1)|ソート済みから座圧|
@@ -180,6 +185,8 @@ iterのconst版
 |floor(2)|_1/_2の床関数|
 |chmax(2)|_1に大きい方を代入|
 |chmin(2)|_1に小さい方を代入|
+|min(...)|可変長の最小値|
+|max(...)|可変長の最大値|
 |pcnt(1)|popcount|
 |lsb(1)|最左ビット|
 |msb(1)|最右ビット|
