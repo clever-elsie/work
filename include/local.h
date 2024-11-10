@@ -58,7 +58,7 @@ template<class s,class t>struct gnu_map:public __gnu_map<s,t> {
 #define rev(a) reverse(A(a))
 #define minel(a) min_element(A(a))
 #define maxel(a) max_element(A(a))
-#define acm(a,s) accumulate(A(a),s)
+#define acm(a) accumulate(A(a),0ll)
 #define nxpm(a) next_permutation(A(a))
 #define uni(a) a.erase(unique(A(a)),a.end())
 #define DR(i) views::drop(i)
@@ -147,6 +147,7 @@ template<class T>void getv(T&a){_getv(a);}
 template<class T,class... Ts>void getv(T&a,Ts&... b){_getv(a);getv(b...);}
 void _putv(const str&a){cout<<a<<endl;}
 void _putv(const vc<str>&a){cter(x,a)cout<<x<<endl;}
+template<class T>void _putv(const T&a) requires requires(const T&x){x.val();}{cout<<a.val();}
 template<class T>void _putv(const T&a){cout<<a;}
 template<class T>void _putv(const vc<T>&a){cter(x,a)cout<<x<<' ';cout<<endl;}
 template<class T>void _putv(const vv<T>&a){cter(y,a){cter(x,y)cout<<x<<' ';cout<<endl;}}

@@ -136,7 +136,7 @@ alias acl='make acl'
 |rev(1)|reverse([begin,end))|
 |minel(1)|min_element([begin,end))|
 |maxel(1)|max_element([begin,end))|
-|acm(2)|配列の総和|
+|acm(1)|配列の総和|
 |nxpm(1)|順列全探索|
 |uni(1)|ソート済みから座圧|
 |DR(1)|views::drop(1)|
@@ -191,7 +191,7 @@ iterのconst版
 |lsb(1)|最左ビット|
 |msb(1)|最右ビット|
 |getv(...)|前から順にstdinから受け取る。組込み型とstr,pair及びそれらのvc,vv|
-|putv(...)|stdoutに空白区切りで出力。stringとvectorは出力後改行。組込み型とstr及び、それらのvc,vv,set(multi,gnu)|
+|putv(...)|stdoutに空白区切りで出力。stringとvectorは出力後改行。組込み型とstr,mint及び、それらのvc,vv,set(multi,gnu)|
 |putbit\<N\>(1)|N桁のビットを出力|
 |iostream operator<<,>>|128bit出力可能、速度は不明|
 
