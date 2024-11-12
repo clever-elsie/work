@@ -133,6 +133,8 @@ alias acl='make acl'
 |rrep(...)|次節|
 |iter(...)|次節|
 |cter(...)|次節|
+|lb(...)|lower_bound|
+|ub(...)|upper_bound|
 |rev(1)|reverse([begin,end))|
 |minel(1)|min_element([begin,end))|
 |maxel(1)|max_element([begin,end))|
