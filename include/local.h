@@ -60,14 +60,15 @@ template<class s,class t>struct gnu_map:public __gnu_map<s,t> {
 #define _LB_BEXG(b,e,x,g) lower_bound(b,e,x,g)
 #define _UB_BEX(b,e,x) upper_bound(b,e,x)
 #define _UB_BEXG(b,e,x,g) upper_bound(b,e,x,g)
-#define lb(...) _SEL4(__VA_ARGS__,_LB_BEX,_LB_BEXG)(__VA_ARGS__)
-#define ub(...) _SEL4(__VA_ARGS__,_UB_BEX,_UB_BEXG)(__VA_ARGS__)
+#define lb(...) _SEL4(__VA_ARGS__,_LB_BEXG,_LB_BEX)(__VA_ARGS__)
+#define ub(...) _SEL4(__VA_ARGS__,_UB_BEXG,_UB_BEX)(__VA_ARGS__)
 #define rev(a) reverse(A(a))
 #define minel(a) min_element(A(a))
 #define maxel(a) max_element(A(a))
 #define acm(a) accumulate(A(a),0ll)
 #define nxpm(a) next_permutation(A(a))
 #define uni(a) a.erase(unique(A(a)),a.end())
+#define Sort(a) sort(A(a))
 #define DR(i) views::drop(i)
 #define TK(i) views::take(i)
 #define RV views::reverse
@@ -106,6 +107,38 @@ template<class T,class U>inline void chmax(T&a,U&&b){if(a<b)a=move(b);}
 template<class T,class U>inline void chmin(T&a,U&&b){if(a>b)a=move(b);}
 template<class... T>inline auto min(T... a){return (std::min)(initializer_list<common_type_t<T...>>{a...});}
 template<class... T>inline auto max(T... a){return (std::max)(initializer_list<common_type_t<T...>>{a...});}
+template<class T,class U,typename comp=std::less<U>>
+	size_t lbi(const T&v,const U&x,comp cmp=comp())
+		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
+			{ return lb(A(v),x,cmp)-v.begin(); }
+template<class T,class U,typename comp=std::less<U>>
+	size_t lbi(size_t i,const T&v,const U&x,comp cmp=comp())
+		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
+			{ return lb(i+A(v),x,cmp)-v.begin(); }
+template<class T,class U,typename comp=std::less<U>>
+	size_t lbi(const T&v,size_t i,const U&x,comp cmp=comp())
+		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
+			{ return lb(I(v,i),x,cmp)-v.begin(); }
+template<class T,class U,typename comp=std::less<U>>
+	size_t lbi(size_t i,const T&v,size_t e,const U&x,comp cmp=comp())
+		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
+			{ return lb(i+I(v,e),x,cmp)-v.begin(); }
+template<class T,class U,typename comp=std::less<U>>
+	size_t ubi(const T&v,const U&x,comp cmp=comp())
+		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
+			{ return ub(A(v),x,cmp)-v.begin(); }
+template<class T,class U,typename comp=std::less<U>>
+	size_t ubi(size_t i,const T&v,const U&x,comp cmp=comp())
+		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
+			{ return ub(i+A(v),x,cmp)-v.begin(); }
+template<class T,class U,typename comp=std::less<U>>
+	size_t ubi(const T&v,size_t i,const U&x,comp cmp=comp())
+		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
+			{ return ub(I(v,i),x,cmp)-v.begin(); }
+template<class T,class U,typename comp=std::less<U>>
+	size_t ubi(size_t i,const T&v,size_t e,const U&x,comp cmp=comp())
+		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
+			{ return ub(i+I(v,e),x,cmp)-v.begin(); }
 #define yes cout<<"Yes\n"
 #define no cout<<"No\n"
 #define yn(c) (c)?yes:no
