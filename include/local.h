@@ -206,6 +206,11 @@ template<class T>void _putv(const multiset<T>&&a){_putv(static_cast<multiset<T>&
 template<class T>void _putv(const gnu_set<T>&&a){_putv(static_cast<gnu_set<T>&>(a));}
 template<class T>void putv(const T&&a){putv(static_cast<const T&>(a));}
 template<class... T>void putv(const T&&... a){(putv(static_cast<const T&>(a)),...);}
+#ifdef LOCAL
+#define dput(...) putv(__VA_ARGS__)
+#else
+#define dput(...)
+#endif
 template<i32 N,integral T> void putbit(T s,char sep='\n'){
 	char buf[N+1]={0};
 	for(char*itr=buf+N-1;itr>=buf;itr--,s>>=1)
