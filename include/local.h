@@ -101,10 +101,8 @@ template<integral T,integral U>inline
 auto ceil(const T a,const U b){return(a+b-1)/b;}
 template<integral T,integral U>inline
 auto floor(const T a,const U b){return a/b-(a%b&&(a^b)<0);}
-template<class T,class U>inline void chmax(T&a,U&b){if(a<b)a=b;}
-template<class T,class U>inline void chmin(T&a,U&b){if(a>b)a=b;}
-template<class T,class U>inline void chmax(T&a,U&&b){if(a<b)a=move(b);}
-template<class T,class U>inline void chmin(T&a,U&&b){if(a>b)a=move(b);}
+template<class T,class U>inline void chmax(T&a,const U&b){if(a<b)a=b;}
+template<class T,class U>inline void chmin(T&a,const U&b){if(a>b)a=b;}
 template<class... T>inline auto min(T... a){return (std::min)(initializer_list<common_type_t<T...>>{a...});}
 template<class... T>inline auto max(T... a){return (std::max)(initializer_list<common_type_t<T...>>{a...});}
 template<class T,class U,typename comp=std::less<U>>
@@ -196,16 +194,6 @@ template<class T>void _putv(const multiset<T>&a){cter(x,a)cout<<x<<' ';NL;}
 template<class T>void _putv(const gnu_set<T>&a){cter(x,a)cout<<x<<' ';NL;}
 template<class T>void putv(const T&a){_putv(a);cout<<endl;}
 template<class T,class... Ts>void putv(const T&a,const Ts&... b){_putv(a);cout<<' ';putv(b...);}
-void _putv(const str&&a){_putv(static_cast<const str&>(a));}
-void _putv(const vc<str>&&a){_putv(static_cast<const vc<str>&>(a));}
-template<class T>void _putv(const T&&a){_putv(static_cast<const T&>(a));}
-template<class T>void _putv(const vc<T>&&a){_putv(static_cast<const vc<T>&>(a));}
-template<class T>void _putv(const vv<T>&&a){_putv(static_cast<const vv<T>&>(a));}
-template<class T>void _putv(const set<T>&&a){_putv(static_cast<set<T>&>(a));}
-template<class T>void _putv(const multiset<T>&&a){_putv(static_cast<multiset<T>&>(a));}
-template<class T>void _putv(const gnu_set<T>&&a){_putv(static_cast<gnu_set<T>&>(a));}
-template<class T>void putv(const T&&a){putv(static_cast<const T&>(a));}
-template<class... T>void putv(const T&&... a){(putv(static_cast<const T&>(a)),...);}
 #ifdef LOCAL
 #define dput(...) putv(__VA_ARGS__)
 #else

@@ -145,6 +145,7 @@ alias acl='make acl'
 |DR(1)|views::drop(1)|
 |TK(1)|views::take(1)|
 |yn(1)|1?yes:no|
+|dput(...)|putv(...)を使いローカルでのみ出力。AtCoderでは出力されない|
 
 ### rep,rrep,iter,cter
 #### rep
