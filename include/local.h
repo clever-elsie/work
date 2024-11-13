@@ -168,25 +168,22 @@ template<Lint T>istream&operator>>(istream&src,T&val) {
 template<integral T>i32 pcnt(T p){return popcount(MUT<T>(p));}
 template<integral T>i32 lsb(T p){return countl_zero(MUT<T>(p));}
 template<integral T>i32 msb(T p){return countr_zero(MUT<T>(p));}
+template<class T>concept Itrabl=requires(const T&x){x.begin();x.end();};
+template<class T>concept IItrabl=Itrabl<T>&&Itrabl<typename T::value_type>;
+template<class T>concept ModInt=requires(const T&x){x.val();};
 template<class T>void _getv(T&a){cin>>a;}
 template<class T,class U>void _getv(pair<T,U>&a){cin>>a.fi>>a.se;}
-template<class T,class U>void _getv(vc<pair<T,U>>&a){iter(x,y,a)cin>>x>>y;}
-template<class T,class U>void _getv(vv<pair<T,U>>&a){iter(t,a)iter(x,y,t)cin>>x>>y;}
-template<class T>void _getv(vc<T>&a){iter(x,a)cin>>x;}
-template<class T>void _getv(vv<T>&a){iter(y,a)iter(x,y)cin>>x;}
+template<class T>void _getv(T&a)requires Itrabl<T>{iter(x,a)_getv(x);}
 template<class T>void getv(T&a){_getv(a);}
 template<class T,class... Ts>void getv(T&a,Ts&... b){_getv(a);getv(b...);}
-void _putv(const str&a){cout<<a<<endl;}
-void _putv(const vc<str>&a){cter(x,a)cout<<x<<endl;}
-template<class T>void _putv(const T&a) requires requires(const T&x){x.val();}{cout<<a.val();}
-template<class T>void _putv(const T&a){cout<<a;}
-template<class T>void _putv(const vc<T>&a){cter(x,a)cout<<x<<' ';cout<<endl;}
-template<class T>void _putv(const vv<T>&a){cter(y,a){cter(x,y)cout<<x<<' ';cout<<endl;}}
-template<class T>void _putv(const set<T>&a){cter(x,a)cout<<x<<' ';NL;}
-template<class T>void _putv(const multiset<T>&a){cter(x,a)cout<<x<<' ';NL;}
-template<class T>void _putv(const gnu_set<T>&a){cter(x,a)cout<<x<<' ';NL;}
-template<class T>void putv(const T&a){_putv(a);cout<<endl;}
-template<class T,class... Ts>void putv(const T&a,const Ts&... b){_putv(a);cout<<' ';putv(b...);}
+void _putv(const str&a){NL;cout<<a;NL;}
+template<class T>void _putv(const T&a){cout<<a<<' ';}
+template<class T>void _putv(const T&a)requires ModInt<T>{cout<<a.val()<<' ';}
+template<class T>void _putv(const T&a)requires Itrabl<T>{NL;cter(x,a)_putv(x);NL;}
+template<class T>void _putv(const T&a)requires IItrabl<T>{NL;cter(y,a){cter(x,y)_putv(x);NL;}}
+template<class T>void _putv(const T&a)requires IItrabl<T>&&same_as<typename T::value_type,str>{NL;cter(x,a)cout<<x<<'\n';}
+template<class T>void putv(const T&a){_putv(a);NL;}
+template<class T,class... Ts>void putv(const T&a,const Ts&... b){_putv(a);putv(b...);}
 #ifdef LOCAL
 #define dput(...) putv(__VA_ARGS__)
 #else
