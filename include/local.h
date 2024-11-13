@@ -105,38 +105,31 @@ template<class T,class U>inline void chmax(T&a,const U&b){if(a<b)a=b;}
 template<class T,class U>inline void chmin(T&a,const U&b){if(a>b)a=b;}
 template<class... T>inline auto min(T... a){return (std::min)(initializer_list<common_type_t<T...>>{a...});}
 template<class... T>inline auto max(T... a){return (std::max)(initializer_list<common_type_t<T...>>{a...});}
-template<class T,class U,typename comp=std::less<U>>
-	size_t lbi(const T&v,const U&x,comp cmp=comp())
-		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
-			{ return lb(A(v),x,cmp)-v.begin(); }
-template<class T,class U,typename comp=std::less<U>>
-	size_t lbi(size_t i,const T&v,const U&x,comp cmp=comp())
-		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
-			{ return lb(i+A(v),x,cmp)-v.begin(); }
-template<class T,class U,typename comp=std::less<U>>
-	size_t lbi(const T&v,size_t i,const U&x,comp cmp=comp())
-		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
-			{ return lb(I(v,i),x,cmp)-v.begin(); }
-template<class T,class U,typename comp=std::less<U>>
-	size_t lbi(size_t i,const T&v,size_t e,const U&x,comp cmp=comp())
-		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
-			{ return lb(i+I(v,e),x,cmp)-v.begin(); }
-template<class T,class U,typename comp=std::less<U>>
-	size_t ubi(const T&v,const U&x,comp cmp=comp())
-		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
-			{ return ub(A(v),x,cmp)-v.begin(); }
-template<class T,class U,typename comp=std::less<U>>
-	size_t ubi(size_t i,const T&v,const U&x,comp cmp=comp())
-		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
-			{ return ub(i+A(v),x,cmp)-v.begin(); }
-template<class T,class U,typename comp=std::less<U>>
-	size_t ubi(const T&v,size_t i,const U&x,comp cmp=comp())
-		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
-			{ return ub(I(v,i),x,cmp)-v.begin(); }
-template<class T,class U,typename comp=std::less<U>>
-	size_t ubi(size_t i,const T&v,size_t e,const U&x,comp cmp=comp())
-		requires same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>
-			{ return ub(i+I(v,e),x,cmp)-v.begin(); }
+template<class T,class U>concept LUBI= same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>;
+template<class T,class U,typename comp=less<U>>
+	size_t lbi(const T&v,const U&x,comp cmp=comp()) requires LUBI<T,U>
+		{ return lb(A(v),x,cmp)-v.begin(); }
+template<class T,class U,typename comp=less<U>>
+	size_t lbi(size_t i,const T&v,const U&x,comp cmp=comp()) requires LUBI<T,U>
+		{ return lb(i+A(v),x,cmp)-v.begin(); }
+template<class T,class U,typename comp=less<U>>
+	size_t lbi(const T&v,size_t i,const U&x,comp cmp=comp()) requires LUBI<T,U>
+		{ return lb(I(v,i),x,cmp)-v.begin(); }
+template<class T,class U,typename comp=less<U>>
+	size_t lbi(size_t i,const T&v,size_t e,const U&x,comp cmp=comp()) requires LUBI<T,U>
+		{ return lb(i+I(v,e),x,cmp)-v.begin(); }
+template<class T,class U,typename comp=less<U>>
+	size_t ubi(const T&v,const U&x,comp cmp=comp()) requires LUBI<T,U>
+		{ return ub(A(v),x,cmp)-v.begin(); }
+template<class T,class U,typename comp=less<U>>
+	size_t ubi(size_t i,const T&v,const U&x,comp cmp=comp()) requires LUBI<T,U>
+		{ return ub(i+A(v),x,cmp)-v.begin(); }
+template<class T,class U,typename comp=less<U>>
+	size_t ubi(const T&v,size_t i,const U&x,comp cmp=comp()) requires LUBI<T,U>
+		{ return ub(I(v,i),x,cmp)-v.begin(); }
+template<class T,class U,typename comp=less<U>>
+	size_t ubi(size_t i,const T&v,size_t e,const U&x,comp cmp=comp()) requires LUBI<T,U>
+		{ return ub(i+I(v,e),x,cmp)-v.begin(); }
 #define yes cout<<"Yes\n"
 #define no cout<<"No\n"
 #define yn(c) (c)?yes:no
@@ -149,7 +142,7 @@ template<Lint T>ostream&operator<<(ostream&dst,T val){
 	if(vsign){
 		if(val==numeric_limits<T>::min()) {
 			const char*minVal="-170141183460469231731687303715884105728";
-			if (dst.rdbuf()->sputn(minVal,40)!=40)dst.setstate(std::ios_base::badbit);
+			if (dst.rdbuf()->sputn(minVal,40)!=40)dst.setstate(ios_base::badbit);
 			return dst;
 		}
 		val=(~val)+1;
