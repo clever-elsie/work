@@ -171,6 +171,7 @@ template<integral T>i32 msb(T p){return countr_zero(MUT<T>(p));}
 template<class T>concept Itrabl=requires(const T&x){x.begin();x.end();};
 template<class T>concept IItrabl=Itrabl<T>&&Itrabl<typename T::value_type>;
 template<class T>concept ModInt=requires(const T&x){x.val();};
+void _getv(str&a){cin>>a;}
 template<class T>void _getv(T&a){cin>>a;}
 template<class T,class U>void _getv(pair<T,U>&a){cin>>a.fi>>a.se;}
 template<class T>void _getv(T&a)requires Itrabl<T>{iter(x,a)_getv(x);}
