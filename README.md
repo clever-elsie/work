@@ -133,15 +133,19 @@ alias acl='make acl'
 |rrep(...)|次節|
 |iter(...)|次節|
 |cter(...)|次節|
+|lb(...)|lower_bound|
+|ub(...)|upper_bound|
 |rev(1)|reverse([begin,end))|
 |minel(1)|min_element([begin,end))|
 |maxel(1)|max_element([begin,end))|
-|acm(2)|配列の総和|
+|Sort(1)|sort(1.begin(),1.end())|
+|acm(1)|配列の総和|
 |nxpm(1)|順列全探索|
 |uni(1)|ソート済みから座圧|
 |DR(1)|views::drop(1)|
 |TK(1)|views::take(1)|
 |yn(1)|1?yes:no|
+|dput(...)|putv(...)を使いローカルでのみ出力。AtCoderでは出力されない|
 
 ### rep,rrep,iter,cter
 #### rep
@@ -187,13 +191,35 @@ iterのconst版
 |chmin(2)|_1に小さい方を代入|
 |min(...)|可変長の最小値|
 |max(...)|可変長の最大値|
+|lbi(...)|lower_boundの位置を返す。詳しくは次節。|
+|ubi(...)|upper_boundの位置を返す。使用法は同上|
 |pcnt(1)|popcount|
 |lsb(1)|最左ビット|
 |msb(1)|最右ビット|
 |getv(...)|前から順にstdinから受け取る。組込み型とstr,pair及びそれらのvc,vv|
-|putv(...)|stdoutに空白区切りで出力。stringとvectorは出力後改行。組込み型とstr及び、それらのvc,vv,set(multi,gnu)|
+|putv(...)|stdoutに空白区切りで出力。stringとvectorは出力後改行。組込み型とstr,mint及び、それらのvc,vv,set(multi,gnu)|
 |putbit\<N\>(1)|N桁のビットを出力|
 |iostream operator<<,>>|128bit出力可能、速度は不明|
+
+### lower_bound, upper_bound
+以下では、 $v$ をvector,array,dequeのいずれかの配列オブジェクト、 $x$ を探索キーの値、 $i$ を開始オフセット、 $e$ を終了位置とする。  
+さらに、 $n=|v|$ とする。  
+$A(v),i+I(v,e)$で用いるのと同様に、 $i$ は0からの相対位置(絶対位置ではあるけれど使用方法はオフセット)、 $e$ は終了位置の絶対的な位置である。  
+
+
+$lb,ub$は通常のlower_bound,upper_boundと同じく、開始と終了のイテレータとキー及び比較関数を渡すことで、使用することができる。  
+したがって、 $A(v)$ や $I(v,e)$ を用いてイテレータの記述を省略する記法もそのまま使える。
+
+引数を $v,x$ とすることで $[0,n)$ で探索を行う
+
+$i,v,x$ならば、 $[i,n)$ で探索を行う。
+
+$v,e,x$ならば、 $[0,e)$ で探索を行う。
+
+$i,v,e,x$ならば、 $[i,e)$ で探索を行う。
+
+それぞれについて、末尾にgreater<>などの比較関数を渡すことができる。  
+これは関数やoperator()をオーバーロードしたクラスなどinvokableなら何でもよい(はず)
 
 ### 定義済み宣言
 INT(...) intを宣言して入力を受け取る
