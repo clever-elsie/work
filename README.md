@@ -14,7 +14,7 @@ WSL2-Ubuntu22.04 or later
 	c   : a.cppをクリップボードにコピー
 	m   : a.outを実行(コンパイルは必要なら自動で行う)
 	g   : a.cppをデバッグコンパイルして実行
-	t   : a.outですべての登録されているテストを実行(同上)
+	t   : cを実行後、a.outですべての登録されているテストを実行(同上)
 	r   : b.cppを開く
 	gen : b.cppから入力生成する。
 	s   : 手動でサンプル登録する。
@@ -61,7 +61,7 @@ alias g='make g'
 alias m='cls;make;'
 alias r='make rand_gen_file'
 alias gen='make gen'
-alias t='cls;make test'
+alias t='make c;cls;make test'
 alias s='make sample_in'
 alias in='make in'
 alias out='make out'
