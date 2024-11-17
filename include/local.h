@@ -69,6 +69,7 @@ template<class s,class t>struct gnu_map:public __gnu_map<s,t> {
 #define nxpm(a) next_permutation(A(a))
 #define uni(a) a.erase(unique(A(a)),a.end())
 #define Sort(a) sort(A(a))
+#define swapcase(a) a=(isalpha(a)?a^32:a)
 #define DR(i) views::drop(i)
 #define TK(i) views::take(i)
 #define RV views::reverse

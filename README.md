@@ -138,6 +138,7 @@ alias acl='make acl'
 |rev(1)|reverse([begin,end))|
 |minel(1)|min_element([begin,end))|
 |maxel(1)|max_element([begin,end))|
+|swapcase(1)|upper<->lowerアルファベット以外は不変|
 |Sort(1)|sort(1.begin(),1.end())|
 |acm(1)|配列の総和|
 |nxpm(1)|順列全探索|
