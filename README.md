@@ -16,7 +16,7 @@ WSL2-Ubuntu22.04 or later
 	g   : a.cppをデバッグコンパイルして実行
 	t   : cを実行後、a.outですべての登録されているテストを実行(同上)
 	r   : b.cppを開く
-	gen : b.cppから入力生成する。
+	gen : b.cppから入力生成する。b.cppでcoutはshm/inにリダイレクトされる。
 	s   : 手動でサンプル登録する。
 	T   : 実行時間を計測する
 	in  : 実行時間計測用の入力ファイルを開く
@@ -120,10 +120,10 @@ alias acl='make acl'
 |sn(2)|" \n"[1==2]|
 |rsv(1)|reserve(1)|
 |pf,pb(1)|push_(back,front)(1)|
-|eb(1)|emplace_back(1)|
+|eb(...)|emplace_back(__VA_ARGS__)|
 |ppf,ppb,pp|pop(_front,_back)()|
 |ins(1)|insert(1)|
-|emp(1)|emplace(1)|
+|emp(...)|emplace(__VA_ARGS__)|
 |cont(1)|contains(1)|
 |mp(2)|make_pair(1,2)|
 |A(1)|[begin,end)|
