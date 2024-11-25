@@ -42,7 +42,7 @@ rand_gen_file: $(RAND_GEN_FILE)
 $(RAND_GEN): $(RAND_GEN_FILE)
 	$(CC) $(RAND_GEN_FILE) -o $(RAND_GEN)
 gen: $(RAND_GEN)
-	$(RAND_GEN)
+	$(RAND_GEN) > $(IN)
 
 
 sample_test = $(tools)sample_test.out

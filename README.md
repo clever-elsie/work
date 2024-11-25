@@ -14,9 +14,9 @@ WSL2-Ubuntu22.04 or later
 	c   : a.cppをクリップボードにコピー
 	m   : a.outを実行(コンパイルは必要なら自動で行う)
 	g   : a.cppをデバッグコンパイルして実行
-	t   : a.outですべての登録されているテストを実行(同上)
+	t   : cを実行後、a.outですべての登録されているテストを実行(同上)
 	r   : b.cppを開く
-	gen : b.cppから入力生成する。
+	gen : b.cppから入力生成する。b.cppでcoutはshm/inにリダイレクトされる。
 	s   : 手動でサンプル登録する。
 	T   : 実行時間を計測する
 	in  : 実行時間計測用の入力ファイルを開く
@@ -61,7 +61,7 @@ alias g='make g'
 alias m='cls;make;'
 alias r='make rand_gen_file'
 alias gen='make gen'
-alias t='cls;make test'
+alias t='make c;cls;make test'
 alias s='make sample_in'
 alias in='make in'
 alias out='make out'
@@ -120,10 +120,10 @@ alias acl='make acl'
 |sn(2)|" \n"[1==2]|
 |rsv(1)|reserve(1)|
 |pf,pb(1)|push_(back,front)(1)|
-|eb(1)|emplace_back(1)|
+|eb(...)|emplace_back(__VA_ARGS__)|
 |ppf,ppb,pp|pop(_front,_back)()|
 |ins(1)|insert(1)|
-|emp(1)|emplace(1)|
+|emp(...)|emplace(__VA_ARGS__)|
 |cont(1)|contains(1)|
 |mp(2)|make_pair(1,2)|
 |A(1)|[begin,end)|
@@ -138,6 +138,7 @@ alias acl='make acl'
 |rev(1)|reverse([begin,end))|
 |minel(1)|min_element([begin,end))|
 |maxel(1)|max_element([begin,end))|
+|swapcase(1)|upper<->lowerアルファベット以外は不変|
 |Sort(1)|sort(1.begin(),1.end())|
 |acm(1)|配列の総和|
 |nxpm(1)|順列全探索|
