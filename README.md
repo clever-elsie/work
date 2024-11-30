@@ -113,6 +113,7 @@ alias acl='make acl'
 |RV|views::reverse|
 |IOTA|views::iota|
 |NL|cout<<'\n'|
+|RET|return|
 
 ### define()
 |省略名|本体|
