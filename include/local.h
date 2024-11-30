@@ -175,16 +175,16 @@ template<class T>concept IItrabl=Itrabl<T>&&Itrabl<typename T::value_type>;
 template<class T>concept ModInt=requires(const T&x){x.val();};
 void _getv(str&a){cin>>a;}
 template<class T>void _getv(T&a){cin>>a;}
-template<class T,class U>void _getv(pair<T,U>&a){cin>>a.fi>>a.se;}
-template<class T>void _getv(T&a)requires Itrabl<T>{iter(x,a)_getv(x);}
+template<class T,class U>void _getv(pair<T,U>&a){_getv(a.fi);_getv(a.se);}
+template<Itrabl T>void _getv(T&a){iter(x,a)_getv(x);}
 template<class T>void getv(T&a){_getv(a);}
 template<class T,class... Ts>void getv(T&a,Ts&... b){_getv(a);getv(b...);}
 void _putv(const str&a){NL;cout<<a;NL;}
 template<class T>void _putv(const T&a){cout<<a<<' ';}
-template<class T>void _putv(const T&a)requires ModInt<T>{cout<<a.val()<<' ';}
-template<class T>void _putv(const T&a)requires Itrabl<T>{NL;cter(x,a)_putv(x);NL;}
-template<class T>void _putv(const T&a)requires IItrabl<T>{NL;cter(y,a){cter(x,y)_putv(x);NL;}}
-template<class T>void _putv(const T&a)requires IItrabl<T>&&same_as<typename T::value_type,str>{NL;cter(x,a)cout<<x<<'\n';}
+template<ModInt T>void _putv(const T&a){cout<<a.val()<<' ';}
+template<Itrabl T>void _putv(const T&a){NL;cter(x,a)_putv(x);NL;}
+template<IItrabl T>void _putv(const T&a){NL;cter(y,a){cter(x,y)_putv(x);NL;}}
+template<IItrabl T>void _putv(const T&a)requires same_as<typename T::value_type,str>{NL;cter(x,a)cout<<x<<'\n';}
 template<class T>void putv(const T&a){_putv(a);NL;}
 template<class T,class... Ts>void putv(const T&a,const Ts&... b){_putv(a);putv(b...);}
 template<i32 N,integral T> void putbit(T s,char sep='\n'){
