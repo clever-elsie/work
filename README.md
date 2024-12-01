@@ -38,7 +38,7 @@ include/setup.shから必要な部分をコメント外しして、環境を構�
 - ac-library  
 	AtCoderで使えるライブラリ
 - lib_Clever_Elsie  
-	現在非公開  
+	https://github.com/clever-elsie/lib_Clever_Elsie.git
 	コードスニペットなので必要ない  
 
 `tools`のmakeはサーバー以外のすべてのツールのビルドをする。  
@@ -113,6 +113,7 @@ alias acl='make acl'
 |RV|views::reverse|
 |IOTA|views::iota|
 |NL|cout<<'\n'|
+|RET|return|
 
 ### define()
 |省略名|本体|

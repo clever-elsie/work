@@ -17,6 +17,7 @@ template<class s,class t>struct gnu_map:public __gnu_map<s,t> {
 	using iterator=typename __gnu_map<s, t>::iterator;
 	template<integral T>iterator operator[](T i){return this->find_by_order(i);}
 };
+#define RET return
 #define int long long
 #define itn long long
 #define fi first
@@ -174,34 +175,27 @@ template<class T>concept IItrabl=Itrabl<T>&&Itrabl<typename T::value_type>;
 template<class T>concept ModInt=requires(const T&x){x.val();};
 void _getv(str&a){cin>>a;}
 template<class T>void _getv(T&a){cin>>a;}
-template<class T,class U>void _getv(pair<T,U>&a){cin>>a.fi>>a.se;}
-template<class T>void _getv(T&a)requires Itrabl<T>{iter(x,a)_getv(x);}
+template<class T,class U>void _getv(pair<T,U>&a){_getv(a.fi);_getv(a.se);}
+template<Itrabl T>void _getv(T&a){iter(x,a)_getv(x);}
 template<class T>void getv(T&a){_getv(a);}
 template<class T,class... Ts>void getv(T&a,Ts&... b){_getv(a);getv(b...);}
 void _putv(const str&a){NL;cout<<a;NL;}
 template<class T>void _putv(const T&a){cout<<a<<' ';}
-template<class T>void _putv(const T&a)requires ModInt<T>{cout<<a.val()<<' ';}
-template<class T>void _putv(const T&a)requires Itrabl<T>{NL;cter(x,a)_putv(x);NL;}
-template<class T>void _putv(const T&a)requires IItrabl<T>{NL;cter(y,a){cter(x,y)_putv(x);NL;}}
-template<class T>void _putv(const T&a)requires IItrabl<T>&&same_as<typename T::value_type,str>{NL;cter(x,a)cout<<x<<'\n';}
+template<ModInt T>void _putv(const T&a){cout<<a.val()<<' ';}
+template<Itrabl T>void _putv(const T&a){NL;cter(x,a)_putv(x);NL;}
+template<IItrabl T>void _putv(const T&a){NL;cter(y,a){cter(x,y)_putv(x);NL;}}
+template<IItrabl T>void _putv(const T&a)requires same_as<typename T::value_type,str>{NL;cter(x,a)cout<<x<<'\n';}
 template<class T>void putv(const T&a){_putv(a);NL;}
 template<class T,class... Ts>void putv(const T&a,const Ts&... b){_putv(a);putv(b...);}
-#ifdef LOCAL
-#define dput(...) putv(__VA_ARGS__)
-#else
-#define dput(...)
-#endif
 template<i32 N,integral T> void putbit(T s,char sep='\n'){
 	char buf[N+1]={0};
 	for(char*itr=buf+N-1;itr>=buf;itr--,s>>=1)
 		*itr='0'+(s&1);
 	cout<<buf<<sep;
 }
-void slv();
-int32_t main(){
-	cin.tie(0),cout.tie(0);
-	ios_base::sync_with_stdio(0);
-	cout<<fixed<<setprecision(15);
-	slv();
-}
+#ifdef LOCAL
+#define dput(...) putv(__VA_ARGS__)
+#else
+#define dput(...)
+#endif
 
