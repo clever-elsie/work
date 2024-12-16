@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
-// order_of_key(key)=>get N of (key is Nth);
 using namespace std;
 namespace vies=std::views;
 using std::cin;
@@ -13,8 +12,14 @@ using mint=modint998244353;
 using mint1=modint1000000007;
 using namespace __gnu_pbds;
 template<class s,class t>using __gnu_map=tree<s,t,less<s>,rb_tree_tag,tree_order_statistics_node_update>;
-template<class s,class t>struct gnu_map:public __gnu_map<s,t> {
-	using iterator=typename __gnu_map<s, t>::iterator;
+template<class s,class t>struct gnu_map:public __gnu_map<s,t>{
+	using iterator=typename __gnu_map<s,t>::iterator;
+	iterator get(size_t idx){return this->find_by_order(idx);}
+	size_t ord(const s&key){return this->order_of_key(key);}
+	// order_of_key(key)=>get N of (key is Nth);
+};
+template<class s>struct gnu_set:public gnu_map<s,null_type>{
+	using iterator=typename __gnu_map<s,null_type>::iterator;
 	template<integral T>iterator operator[](T i){return this->find_by_order(i);}
 };
 #define RET return
@@ -79,7 +84,6 @@ template<class s,class t>struct gnu_map:public __gnu_map<s,t> {
 #define INT(...) int __VA_ARGS__;getv(__VA_ARGS__)
 #define STR(...) str __VA_ARGS__;getv(__VA_ARGS__)
 template<class f>using gr=greater<f>;
-template<class s>using gnu_set=gnu_map<s,null_type>;
 template<class f>using vc=vector<f>;
 template<class f>using vv=vc<vc<f>>;
 template<class f>using v3=vv<vc<f>>;

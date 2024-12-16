@@ -91,7 +91,7 @@ alias acl='make acl'
 |pqgp|pi最小priority_queue|
 |gr\<T\>|greater\<T\>|
 |gnu_set\<T\>|乱択可能set(0-based operator[])|
-|gnu_map\<T\>|乱択可能map(0-based operator[])|
+|gnu_map\<T\>|乱択可能map(.get(idx)で乱択, .ord(key)でキーの順番)|
 |uset|unordered_set|
 |umap|unordered_map|
 |i[8-64]|signed integral|
