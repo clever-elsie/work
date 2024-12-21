@@ -81,8 +81,6 @@ template<class s>struct gnu_set:public gnu_map<s,null_type>{
 #define RV views::reverse
 #define IOTA vies::iota
 #define NL cout<<'\n'
-#define INT(...) int __VA_ARGS__;getv(__VA_ARGS__)
-#define STR(...) str __VA_ARGS__;getv(__VA_ARGS__)
 template<class f>using gr=greater<f>;
 template<class f>using vc=vector<f>;
 template<class f>using vv=vc<vc<f>>;
@@ -92,14 +90,21 @@ template<class f>using pq=priority_queue<f>;
 template<class f>using pqg=priority_queue<f, vc<f>, gr<f>>;
 #define uset unordered_set
 #define umap unordered_map
-using i8=int8_t; using i16=int16_t; using i32=int32_t; using i64=int64_t;
-using u8=uint8_t;using u16=uint16_t;using u32=uint32_t;using u64=uint64_t;
+using i8=int8_t; using i16=int16_t; using i32=int32_t; using i64=int64_t; using i128=__int128_t;
+using u8=uint8_t;using u16=uint16_t;using u32=uint32_t;using u64=uint64_t;using u128=__uint128_t;
 using intw=__int128_t;using uintw=__uint128_t;
-using f32=float;using f64=double;
+using f32=float;using f64=double;using f128=long double;
 using vi=vc<int>;using vb=vc<bool>;
 using pi=pair<int,int>;
 using str=string;using vs=vc<str>;
 using pqgp=pqg<pi>;
+#define INT(...) int __VA_ARGS__;getv(__VA_ARGS__)
+#define CHR(...) char __VA_ARGS__;getv(__VA_ARGS__)
+#define STR(...) str __VA_ARGS__;getv(__VA_ARGS__)
+#define VI(a,n) vi a(n);getv(a)
+#define VS(a,n) vs a(n);getv(a)
+#define UV(u,v) INT(u,v);u--,v--
+#define UVW(u,v,w) INT(u,v,w);u--,v--
 constexpr int inf=1ll<<60,minf=-inf;
 constexpr array<pi,8>dc={{{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}}};
 constexpr array<u32,6> mods{998244353,998244853,1000000007,1000000009,1000000021,1000000033};

@@ -94,9 +94,9 @@ alias acl='make acl'
 |gnu_map\<T\>|乱択可能map(.get(idx)で乱択, .ord(key)でキーの順番)|
 |uset|unordered_set|
 |umap|unordered_map|
-|i[8-64]|signed integral|
-|u[8-64]|unsigned integral|
-|f[32,64]|floating-point|
+|i[8-128]|signed integral|
+|u[8-128]|unsigned integral|
+|f[32-128]|floating-point|
 |sstream|stringstream|
 
 ### 省略可能名前空間
@@ -225,4 +225,9 @@ $i,v,e,x$ならば、 $[i,e)$ で探索を行う。
 
 ### 定義済み宣言
 INT(...) intを宣言して入力を受け取る
+CHR(...) charを宣言して入力を受け取る
 STR(...) stringを宣言して入力を受け取る
+VI(a,n) サイズnのint配列を宣言して入力を受け取る
+VS(a,n) サイズnのstring配列を宣言して入力を受け取る
+UV(u,v) グラフの辺を受け取るときに頂点番号を-1する
+UVW(u,v,w) 重み付きバージョン
