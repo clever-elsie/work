@@ -13,6 +13,7 @@ all: $(EXE)
 	$(EXE)
 $(EXE): $(PP) include/local.h
 	$(CC) $(PP) -o $(EXE)
+	clear
 $(PP):
 	$(new)
 n: clean
