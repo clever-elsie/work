@@ -51,7 +51,7 @@ def save_contents_to_files(contents):
             print(f"Error writing sample {filename}: {e}", file=sys.stderr)
 
 if __name__ == "__main__":
-    file_path = "/dev/shm/url.in"
+    file_path = "/dev/shm/url"
     url = read_url_from_file(file_path)
     if not url:
         print("No URL found", file=sys.stderr)
