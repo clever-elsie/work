@@ -18,13 +18,9 @@
 			color: black;
 			font-family:'Courier New', Courier, monospace;
 			font-size: 24px;
+			width: 100%;
 		}
-		button{
-			padding-top: 2em;
-			padding-bottom: 2em;
-			padding-left:2em;
-			padding-right: 2em;
-		}
+		button{ padding: 2em; }
 	</style>
 </head>
 
@@ -32,9 +28,11 @@
 	<script src="script.js"></script>
 	<button onclick="setSample()">サンプル登録</button>
 	<span style="position:absolute; right:0;">
-	<button onclick="clearField()" >クリア</button>
+	<button onclick="clearField()">クリア</button>
 	</span>
+	<div><textarea id="url" rows="2" style="width:100%;" placeholder="URL"></textarea></div>
 	<div><span style="font-size:large">
+		<button onclick="clearForm()" style="padding: 0.5em;">クリア</button>
 		<select id="contest_type">
 			<option value="none">none</option>
 			<option value="abc">ABC</option>
@@ -44,14 +42,13 @@
 		<input id="contest_number" placeholder="000" style="width: 5rem;font-size: larger;"/>
 		<input id="probrem_number" placeholder="y" style="width: 3rem;font-size: larger;"/>
 	</span></div>
-	<div><textarea id="url" rows="2" style="width:100%;" placeholder="URL"></textarea></div>
-	<div><textarea id="1" rows="6" style="width:100%;"></textarea></div>
-	<div><textarea id="2" rows="6" style="width:100%;"></textarea></div>
-	<div><textarea id="3" rows="6" style="width:100%;"></textarea></div>
-	<div><textarea id="4" rows="6" style="width:100%;"></textarea></div>
-	<div><textarea id="5" rows="6" style="width:100%;"></textarea></div>
-	<div><textarea id="6" rows="6" style="width:100%;"></textarea></div>
-	<div><textarea id="7" rows="6" style="width:100%;"></textarea></div>
+	<div><textarea id="1" rows="6"></textarea></div>
+	<div><textarea id="2" rows="6"></textarea></div>
+	<div><textarea id="3" rows="6"></textarea></div>
+	<div><textarea id="4" rows="6"></textarea></div>
+	<div><textarea id="5" rows="6"></textarea></div>
+	<div><textarea id="6" rows="6"></textarea></div>
+	<div><textarea id="7" rows="6"></textarea></div>
 	<details>
 		<summary>signal</summary>
 		<table>
