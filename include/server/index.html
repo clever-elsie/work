@@ -5,7 +5,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Code test</title>
+	<!--
 	<link rel="stylesheet" type="text/css" href="style.css">
+	-->
 	<style>
 		body{
 			background-color: black;
@@ -32,6 +34,17 @@
 	<span style="position:absolute; right:0;">
 	<button onclick="clearField()" >クリア</button>
 	</span>
+	<div><span style="font-size:large">
+		<select id="contest_type">
+			<option value="none">none</option>
+			<option value="abc">ABC</option>
+			<option value="arc">ARC</option>
+			<option value="agc">AGC</option>
+		</select>
+		<input id="contest_number" placeholder="000" style="width: 5rem;font-size: larger;"/>
+		<input id="probrem_number" placeholder="y" style="width: 3rem;font-size: larger;"/>
+	</span></div>
+	<div><textarea id="url" rows="2" style="width:100%;" placeholder="URL"></textarea></div>
 	<div><textarea id="1" rows="6" style="width:100%;"></textarea></div>
 	<div><textarea id="2" rows="6" style="width:100%;"></textarea></div>
 	<div><textarea id="3" rows="6" style="width:100%;"></textarea></div>
