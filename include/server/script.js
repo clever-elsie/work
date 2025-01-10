@@ -6,7 +6,7 @@ function setSample(){
 	let probrem_number = document.getElementById('probrem_number').value;
 	if(URLtext.value!=""){
 		data.push({
-			"id":"url",
+			"id":-1,
 			"sample_in":URLtext.value
 		});
 	}else if(contest_type!="none" && contest_number!="" && probrem_number != ""){
@@ -19,7 +19,7 @@ function setSample(){
 		gen_url+=contest+"_"+probrem_number;
 		console.log(gen_url);
 		data.push({
-			"id":"url",
+			"id":-1,
 			"sample_in": gen_url
 		});
 	}

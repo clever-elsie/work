@@ -27,7 +27,8 @@ crow::response sample_register(const crow::request&req){
 	for(const auto& item:data){
 		if(!item.has("id")||!item.has("sample_in")) return crow::response(400,"Missing required fields");
 		string sample_in=item["sample_in"].s();
-		if(string mode = item["id"].s();mode == "url"){
+		int64_t id=item["id"].i();
+		if(id==-1ll){
 			string file("/dev/shm/url");
 			ofstream ofs(file);
 			ofs<<sample_in<<endl;
@@ -36,7 +37,6 @@ crow::response sample_register(const crow::request&req){
 			int _ = system(command);
 			if(_) return crow::response(500,"Failed on url requests");
 		}else{
-			int64_t id=item["id"].i();
 			string file=string("/dev/shm/")+to_string(id)+string(".in");
 			ofstream ofs(file);
 			ofs<<sample_in<<endl;
