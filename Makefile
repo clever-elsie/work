@@ -19,6 +19,9 @@ $(PP):
 n: clean
 	$(new)
 	$(ED) $(PP)
+pre: clean
+	cp ./include/tools/resource/template_pre.cpp $(PP)
+	$(ED) $(PP)
 c:
 	$(macro) | clip.exe
 e:

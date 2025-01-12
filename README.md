@@ -36,6 +36,7 @@ ABC,ARC,AGC以外の場合はURL直接入力しか使えない．
 	in  : 実行時間計測用の入力ファイルを開く
 	out : 実行時間計測用の出力ファイルを開く
 	acl : ACLをAtCoder以外でも使えるように展開する
+	pre : テンプレファイルを後置しない`a.cpp`
 ```
 ## 環境構築
 include/setup.shから必要な部分をコメント外しして、環境を構築する。  
@@ -69,6 +70,7 @@ include/setup.shから必要な部分をコメント外しして、環境を構�
 export PS1="\[\e[1;32m\]\w \[\e[0m\]\$"
 alias cls='clear'
 alias n='make n;cls'
+alias pre='make pre;cls'
 alias c='make c'
 alias e='make e'
 alias g='make g'
