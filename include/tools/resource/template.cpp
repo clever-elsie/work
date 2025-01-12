@@ -1,4 +1,6 @@
-#include <local.h>
+#ifndef HEADER
+#define HEADER
+#include __FILE__
 
 void slv(){
 	
@@ -9,3 +11,7 @@ signed main(){
 	cout<<fixed<<setprecision(15);
 	slv();
 }
+
+#else
+#include <local.h>
+#endif

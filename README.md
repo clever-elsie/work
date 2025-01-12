@@ -191,8 +191,8 @@ iterのconst版
 |-|-|
 |inf|$2^{60}$|
 |minf|$-2^{60}$|
+|sep|'\n'|
 |dc : vc\<pi\>|右下左上、右下、右上、左下、左上|
-|mods : vc\<u32\>|998244353, 998244853, 1e9+7, 1e9+9, 1e9+21, 1e9+33|
 |yes|cout<<"Yes\n"|
 |no|cout<<"No\n"|
 
@@ -205,15 +205,13 @@ iterのconst版
 |floor(2)|_1/_2の床関数|
 |chmax(2)|_1に大きい方を代入|
 |chmin(2)|_1に小さい方を代入|
-|min(...)|可変長の最小値|
-|max(...)|可変長の最大値|
 |lbi(...)|lower_boundの位置を返す。詳しくは次節。|
 |ubi(...)|upper_boundの位置を返す。使用法は同上|
 |pcnt(1)|popcount|
 |lsb(1)|最左ビット|
 |msb(1)|最右ビット|
 |getv(...)|前から順にstdinから受け取る。組込み型とstr,pair及びそれらのvc,vv|
-|putv(...)|stdoutに空白区切りで出力。stringとvectorは出力後改行。組込み型とstr,mint及び、それらのvc,vv,set(multi,gnu)|
+|putv(...)|stdoutに空白区切りで出力。stringとvectorは出力後改行。組込み型とpair,str,mint及び、それらのvc,vv,set(multi,gnu)|
 |putbit\<N\>(1)|N桁のビットを出力|
 |iostream operator<<,>>|128bit出力可能、速度は不明|
 

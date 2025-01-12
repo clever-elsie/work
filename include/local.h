@@ -1,27 +1,26 @@
-#include <atcoder/modint>
-#include <bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-using namespace std;
-namespace vies=std::views;
-using std::cin;
-using std::cout;
-using sstream=stringstream;
+#if __has_include(<atcoder/all>)
+#include<atcoder/all>
 using namespace atcoder;
 using mint=modint998244353;
 using mint1=modint1000000007;
+#endif
+#if __has_include(<ext/pb_ds/assoc_container.hpp>) && __has_include(<ext/pb_ds/tree_policy.hpp>)
+#include<ext/pb_ds/assoc_container.hpp>
+#include<ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
-template<class s,class t>using __gnu_map=tree<s,t,less<s>,rb_tree_tag,tree_order_statistics_node_update>;
+template<class s,class t>using __gnu_map=tree<s,t,std::less<s>,rb_tree_tag,tree_order_statistics_node_update>;
 template<class s,class t>struct gnu_map:public __gnu_map<s,t>{
 	using iterator=typename __gnu_map<s,t>::iterator;
-	iterator get(size_t idx){return this->find_by_order(idx);}
+	iterator get(int64_t idx){return this->find_by_order(idx<0?this->size()-idx:idx);}
 	size_t ord(const s&key){return this->order_of_key(key);}
-	// order_of_key(key)=>get N of (key is Nth);
 };
-template<class s>struct gnu_set:public gnu_map<s,null_type>{
-	using iterator=typename __gnu_map<s,null_type>::iterator;
-	template<integral T>iterator operator[](T i){return this->find_by_order(i);}
-};
+#endif
+template<class s>struct gnu_set:public gnu_map<s,null_type>{gnu_map<s,null_type>::iterator operator[](int64_t i){return this->get(i);}};
+#include <bits/stdc++.h>
+using namespace std;
+using std::cin;
+using std::cout;
+using sstream=stringstream;
 #define RET return
 #define int long long
 #define itn long long
@@ -46,13 +45,13 @@ template<class s>struct gnu_set:public gnu_map<s,null_type>{
 #define elif(c) else if(c)
 #define _SEL4(_1,_2,_3,_4,name,...) name
 #define _SEL3(_1,_2,_3,name,...) name
-#define _REP1(n) for(int _=0;_<(n);_++)
-#define _REP2(i,n) for(int i=0;i<(n);i++)
-#define _REP3(i,s,n) for(int i=(s);i<(n);i++)
-#define _REP4(i,s,n,step) for(int i=(s);i<(n);i+=(step))
-#define _RREP2(i,n) for(int i=(n);i>=0;i--)
-#define _RREP3(i,n,t) for(int i=(n);i>=(t);i--)
+#define _REP4(i,s,n,st) for(int i=(s);i<(n);i+=(st))
+#define _REP3(i,s,n) _REP4(i,s,n,1)
+#define _REP2(i,n) _REP3(i,0,n)
+#define _REP1(n) _REP2(_,n)
 #define _RREP4(i,n,t,s) for(int i=(n);i>=(t);i-=(s))
+#define _RREP3(i,n,t) _RREP4(i,n,t,1)
+#define _RREP2(i,n) _RREP3(i,n,0)
 #define _ITER2(x,a) for(auto&x:a)
 #define _ITER3(x,y,a) for(auto&[x,y]:a)
 #define _CTER2(x,a) for(const auto&x:a)
@@ -73,13 +72,9 @@ template<class s>struct gnu_set:public gnu_map<s,null_type>{
 #define maxel(a) max_element(A(a))
 #define acm(a) accumulate(A(a),0ll)
 #define nxpm(a) next_permutation(A(a))
-#define uni(a) a.erase(unique(A(a)),a.end())
 #define Sort(a) sort(A(a))
+#define uni(a) Sort(a);a.erase(unique(A(a)),a.end())
 #define swapcase(a) a=(isalpha(a)?a^32:a)
-#define DR(i) views::drop(i)
-#define TK(i) views::take(i)
-#define RV views::reverse
-#define IOTA vies::iota
 #define NL cout<<'\n'
 template<class f>using gr=greater<f>;
 template<class f>using vc=vector<f>;
@@ -98,6 +93,23 @@ using vi=vc<int>;using vb=vc<bool>;
 using pi=pair<int,int>;
 using str=string;using vs=vc<str>;
 using pqgp=pqg<pi>;
+#define double f128
+constexpr int inf=1ll<<60,minf=-inf;
+constexpr char sep='\n';
+constexpr array<pi,8>dc={{{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}}};
+template<class T,class U>inline void chmax(T&a,const U&b){if(a<b)a=b;}
+template<class T,class U>inline void chmin(T&a,const U&b){if(a>b)a=b;}
+#define yes cout<<"Yes\n"
+#define no cout<<"No\n"
+#define yn(c) (c)?yes:no
+#if __cplusplus <= 202002L
+#else
+#define C const
+namespace vies=std::views;
+#define DR(i) views::drop(i)
+#define TK(i) views::take(i)
+#define RV views::reverse
+#define IOTA vies::iota
 #define INT(...) int __VA_ARGS__;getv(__VA_ARGS__)
 #define CHR(...) char __VA_ARGS__;getv(__VA_ARGS__)
 #define STR(...) str __VA_ARGS__;getv(__VA_ARGS__)
@@ -105,105 +117,80 @@ using pqgp=pqg<pi>;
 #define VS(a,n) vs a(n);getv(a)
 #define UV(u,v) INT(u,v);u--,v--
 #define UVW(u,v,w) INT(u,v,w);u--,v--
-constexpr int inf=1ll<<60,minf=-inf;
-constexpr array<pi,8>dc={{{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}}};
-constexpr array<u32,6> mods{998244353,998244853,1000000007,1000000009,1000000021,1000000033};
-template<integral T,integral U>inline
-auto ceil(const T a,const U b){return(a+b-1)/b;}
-template<integral T,integral U>inline
-auto floor(const T a,const U b){return a/b-(a%b&&(a^b)<0);}
-template<class T,class U>inline void chmax(T&a,const U&b){if(a<b)a=b;}
-template<class T,class U>inline void chmin(T&a,const U&b){if(a>b)a=b;}
-template<class... T>inline auto min(T... a){return (std::min)(initializer_list<common_type_t<T...>>{a...});}
-template<class... T>inline auto max(T... a){return (std::max)(initializer_list<common_type_t<T...>>{a...});}
+template<integral T,integral U>inline auto ceil(C T a,C U b){return(a+b-1)/b;}
+template<integral T,integral U>inline auto floor(C T a,C U b){return a/b-(a%b&&(a^b)<0);}
 template<class T,class U>concept LUBI= same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>;
-template<class T,class U,typename comp=less<U>>
-	size_t lbi(const T&v,const U&x,comp cmp=comp()) requires LUBI<T,U>
-		{ return lb(A(v),x,cmp)-v.begin(); }
-template<class T,class U,typename comp=less<U>>
-	size_t lbi(size_t i,const T&v,const U&x,comp cmp=comp()) requires LUBI<T,U>
-		{ return lb(i+A(v),x,cmp)-v.begin(); }
-template<class T,class U,typename comp=less<U>>
-	size_t lbi(const T&v,size_t i,const U&x,comp cmp=comp()) requires LUBI<T,U>
-		{ return lb(I(v,i),x,cmp)-v.begin(); }
-template<class T,class U,typename comp=less<U>>
-	size_t lbi(size_t i,const T&v,size_t e,const U&x,comp cmp=comp()) requires LUBI<T,U>
-		{ return lb(i+I(v,e),x,cmp)-v.begin(); }
-template<class T,class U,typename comp=less<U>>
-	size_t ubi(const T&v,const U&x,comp cmp=comp()) requires LUBI<T,U>
-		{ return ub(A(v),x,cmp)-v.begin(); }
-template<class T,class U,typename comp=less<U>>
-	size_t ubi(size_t i,const T&v,const U&x,comp cmp=comp()) requires LUBI<T,U>
-		{ return ub(i+A(v),x,cmp)-v.begin(); }
-template<class T,class U,typename comp=less<U>>
-	size_t ubi(const T&v,size_t i,const U&x,comp cmp=comp()) requires LUBI<T,U>
-		{ return ub(I(v,i),x,cmp)-v.begin(); }
-template<class T,class U,typename comp=less<U>>
-	size_t ubi(size_t i,const T&v,size_t e,const U&x,comp cmp=comp()) requires LUBI<T,U>
-		{ return ub(i+I(v,e),x,cmp)-v.begin(); }
-#define yes cout<<"Yes\n"
-#define no cout<<"No\n"
-#define yn(c) (c)?yes:no
-template<class T>concept Lint=is_integral_v<T>&&sizeof(T)>8;
-template<Lint T>ostream&operator<<(ostream&dst,T val){
+#define TP template<class T,class U,typename cp=less<U>>
+#define RL requires LUBI<T,U>
+TP u64 lbi(C T&v,C U&x,cp cmp=cp())RL{RET lb(A(v),x,cmp)-begin(v);}
+TP u64 ubi(C T&v,C U&x,cp cmp=cp())RL{RET ub(A(v),x,cmp)-begin(v);}
+TP u64 lbi(u64 i,C T&v,C U&x,cp cmp=cp())RL{RET lb(i+A(v),x,cmp)-begin(v);}
+TP u64 ubi(u64 i,C T&v,C U&x,cp cmp=cp())RL{RET ub(i+A(v),x,cmp)-begin(v);}
+TP u64 lbi(C T&v,u64 i,C U&x,cp cmp=cp())RL{RET lb(I(v,i),x,cmp)-begin(v);}
+TP u64 ubi(C T&v,u64 i,C U&x,cp cmp=cp())RL{RET ub(I(v,i),x,cmp)-begin(v);}
+TP u64 lbi(u64 i,C T&v,u64 e,C U&x,cp cmp=cp())RL{RET lb(i+I(v,e),x,cmp)-begin(v);}
+TP u64 ubi(u64 i,C T&v,u64 e,C U&x,cp cmp=cp())RL{RET ub(i+I(v,e),x,cmp)-begin(v);}
+#undef TP
+#undef RL
+#define TP template
+TP<class T>concept Lint=is_integral_v<T>&&sizeof(T)>8;
+TP<Lint T>ostream&operator<<(ostream&dst,T val){
 	ostream::sentry s(dst);
-	if (!s)return dst;
+	if(!s)return dst;
 	char _O128[64];
-	bool vsign=val<0;
-	if(vsign){
-		if(val==numeric_limits<T>::min()) {
-			const char*minVal="-170141183460469231731687303715884105728";
-			if (dst.rdbuf()->sputn(minVal,40)!=40)dst.setstate(ios_base::badbit);
-			return dst;
-		}
-		val=(~val)+1;
-	}
 	char*d=end(_O128);
+	bool vsign=val<0;
+	uintw v=val;
+	if(vsign&&val!=numeric_limits<T>::min())v=1+~(uintw)val;
 	do{
-		*(--d)="0123456789"[val%10];
-		val/=10;
-	}while(val!=0);
+		*(--d)="0123456789"[v%10];
+		v/=10;
+	}while(v!=0);
 	if(vsign)*(--d)='-';
 	size_t len=end(_O128)-d;
 	if(dst.rdbuf()->sputn(d,len)!=len)dst.setstate(ios_base::badbit);
 	return dst;
 }
-template<Lint T>istream&operator>>(istream&src,T&val) {
+TP<Lint T>istream&operator>>(istream&src,T&val) {
 	str s;src>>s;
 	bool is_neg=numeric_limits<T>::is_signed&&s.size()>0&&s[0]=='-';
-	for(val=0;const auto&x:s|views::drop(is_neg))val=10*val+x-'0';
+	for(val=0;C auto&x:s|views::drop(is_neg))val=10*val+x-'0';
 	if(is_neg)val*=-1;
 	return src;
 }
 #define MUT make_unsigned_t
-template<integral T>i32 pcnt(T p){return popcount(MUT<T>(p));}
-template<integral T>i32 lsb(T p){return countl_zero(MUT<T>(p));}
-template<integral T>i32 msb(T p){return countr_zero(MUT<T>(p));}
-template<class T>concept Itrabl=requires(const T&x){x.begin();x.end();};
-template<class T>concept IItrabl=Itrabl<T>&&Itrabl<typename T::value_type>;
-template<class T>concept ModInt=requires(const T&x){x.val();};
+TP<integral T>i32 pcnt(T p){return popcount(MUT<T>(p));}
+TP<integral T>i32 lsb(T p){return countl_zero(MUT<T>(p));}
+TP<integral T>i32 msb(T p){return countr_zero(MUT<T>(p));}
+TP<class T>concept Itrabl=requires(C T&x){x.begin();x.end();};
+TP<class T>concept IItrabl=Itrabl<T>&&Itrabl<typename T::value_type>;
+TP<class T>concept ModInt=requires(C T&x){x.val();};
 void _getv(str&a){cin>>a;}
-template<class T>void _getv(T&a){cin>>a;}
-template<class T,class U>void _getv(pair<T,U>&a){_getv(a.fi);_getv(a.se);}
-template<Itrabl T>void _getv(T&a){iter(x,a)_getv(x);}
-template<class T>void getv(T&a){_getv(a);}
-template<class T,class... Ts>void getv(T&a,Ts&... b){_getv(a);getv(b...);}
-void _putv(const str&a){NL;cout<<a;NL;}
-template<class T>void _putv(const T&a){cout<<a<<' ';}
-template<ModInt T>void _putv(const T&a){cout<<a.val()<<' ';}
-template<Itrabl T>void _putv(const T&a){NL;cter(x,a)_putv(x);NL;}
-template<IItrabl T>void _putv(const T&a){NL;cter(y,a){cter(x,y)_putv(x);NL;}}
-template<IItrabl T>void _putv(const T&a)requires same_as<typename T::value_type,str>{NL;cter(x,a)cout<<x<<'\n';}
-template<class T>void putv(const T&a){_putv(a);NL;}
-template<class T,class... Ts>void putv(const T&a,const Ts&... b){_putv(a);putv(b...);}
-template<i32 N,integral T> void putbit(T s,char sep='\n'){
+TP<class T>void _getv(T&a){cin>>a;}
+TP<class T,class U>void _getv(pair<T,U>&a){_getv(a.fi);_getv(a.se);}
+TP<Itrabl T>void _getv(T&a){iter(x,a)_getv(x);}
+TP<class T>void getv(T&a){_getv(a);}
+TP<class T,class... Ts>void getv(T&a,Ts&... b){_getv(a);getv(b...);}
+ostream&dos=cout;
+void _putv(C str&a){dos<<a<<sep;}
+TP<class T>void _putv(C T&a){dos<<a<<' ';}
+TP<class T,class U>void _putv(C pair<T,U>&a){_putv(a.fi);_putv(a.se);}
+TP<ModInt T>void _putv(C T&a){_putv(a.val());}
+TP<Itrabl T>void _putv(C T&a){cter(x,a)_putv(x);dos<<sep;}
+TP<IItrabl T>void _putv(C T&a){cter(y,a)_putv(y);}
+TP<IItrabl T>void _putv(C T&a)requires same_as<typename T::value_type,str>{cter(x,a)_putv(x);}
+TP<class T>void putv(C T&a){_putv(a);dos<<sep;}
+TP<class T,class... Ts>void putv(C T&a,C Ts&... b){_putv(a);putv(b...);}
+TP<i32 N,integral T> void putbit(T s,char sep='\n'){
 	char buf[N+1]={0};
 	for(char*itr=buf+N-1;itr>=buf;itr--,s>>=1)
 		*itr='0'+(s&1);
 	cout<<buf<<sep;
 }
+#undef TP
+#endif
 #ifdef LOCAL
-#define dput(...) putv(__VA_ARGS__)
+#define dput(...) dos=cerr;putv(__VA_ARGS__);dos=cout
 #else
 #define dput(...)
 #endif
