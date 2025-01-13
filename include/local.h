@@ -171,15 +171,15 @@ TP<class T,class U>void _getv(pair<T,U>&a){_getv(a.fi);_getv(a.se);}
 TP<Itrabl T>void _getv(T&a){iter(x,a)_getv(x);}
 TP<class T>void getv(T&a){_getv(a);}
 TP<class T,class... Ts>void getv(T&a,Ts&... b){_getv(a);getv(b...);}
-ostream&dos=cout;
-void _putv(C str&a){dos<<a<<sep;}
-TP<class T>void _putv(C T&a){dos<<a<<' ';}
+ostream*dos=&cout;
+void _putv(C str&a){(*dos)<<a<<sep;}
+TP<class T>void _putv(C T&a){(*dos)<<a<<' ';}
 TP<class T,class U>void _putv(C pair<T,U>&a){_putv(a.fi);_putv(a.se);}
 TP<ModInt T>void _putv(C T&a){_putv(a.val());}
-TP<Itrabl T>void _putv(C T&a){cter(x,a)_putv(x);dos<<sep;}
+TP<Itrabl T>void _putv(C T&a){cter(x,a)_putv(x);(*dos)<<sep;}
 TP<IItrabl T>void _putv(C T&a){cter(y,a)_putv(y);}
 TP<IItrabl T>void _putv(C T&a)requires same_as<typename T::value_type,str>{cter(x,a)_putv(x);}
-TP<class T>void putv(C T&a){_putv(a);dos<<sep;}
+TP<class T>void putv(C T&a){_putv(a);(*dos)<<sep;}
 TP<class T,class... Ts>void putv(C T&a,C Ts&... b){_putv(a);putv(b...);}
 TP<i32 N,integral T> void putbit(T s,char sep='\n'){
 	char buf[N+1]={0};
@@ -190,7 +190,7 @@ TP<i32 N,integral T> void putbit(T s,char sep='\n'){
 #undef TP
 #endif
 #ifdef LOCAL
-#define dput(...) dos=cerr;putv(__VA_ARGS__);dos=cout
+#define dput(...) dos=&cerr;putv(__VA_ARGS__);dos=&cout
 #else
 #define dput(...)
 #endif
