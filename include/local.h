@@ -188,6 +188,7 @@ TP<i32 N,integral T> void putbit(T s,char sep='\n'){
 	cout<<buf<<sep;
 }
 #undef TP
+#undef C
 #endif
 #ifdef LOCAL
 #define dput(...) dos=&cerr;putv(__VA_ARGS__);dos=&cout
