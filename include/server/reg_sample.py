@@ -47,6 +47,7 @@ def save_contents_to_files(contents):
         try:
             with open(filename, 'w') as file:
                 file.write(content)
+                file.write('\n')
         except Exception as e:
             print(f"Error writing sample {filename}: {e}", file=sys.stderr)
 
