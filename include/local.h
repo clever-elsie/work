@@ -14,8 +14,8 @@ template<class s,class t>struct gnu_map:public __gnu_map<s,t>{
 	iterator get(int64_t idx){return this->find_by_order(idx<0?this->size()-idx:idx);}
 	size_t ord(const s&key){return this->order_of_key(key);}
 };
-#endif
 template<class s>struct gnu_set:public gnu_map<s,null_type>{gnu_map<s,null_type>::iterator operator[](int64_t i){return this->get(i);}};
+#endif
 #include <bits/stdc++.h>
 using namespace std;
 using std::cin;
