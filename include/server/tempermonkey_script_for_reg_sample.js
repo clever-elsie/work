@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.2
 // @description  Export sample inputs from AtCoder problems and send them to a local server.
-// @author       YourName
+// @author       CleverElsie
 // @match        https://atcoder.jp/contests/*/tasks/*
 // @grant        GM_xmlhttpRequest
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
