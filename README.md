@@ -8,19 +8,6 @@ WSL2-Ubuntu22.04 or later
 `#include <local.h>`を`~/work/include/local.h`の中身で置き換える。半角スペースは必須。
 `b.cpp`では出力ファイルを`shm/in`にすると`T`で時間を測れる。
 
-コードテスト環境でABC,ARC,AGCのいずれかと回と問題を指定するか，問題ページのURLを入力するとテストケースを拾ってきてテスト用のファイルを生成して`t`のテスト一括実行で実行できる．  
-手動で作ったテストケースはコードテストページのその下の`textarea`に入力することができる．  
-サンプル登録でサーバー側のsystemdが拾い`/dev/shm/*.in`という形式でテストケースのファイルが生成される．
-この時すでに登録されているテストケースは削除される．  
-クリアボタンは上側のものでは手動登録したものとURLと回指定の問題番号のみがページからクリアされる．  
-ただしこれは`/dev/shm/*.in`は削除されない．  
-`n`を使うか空の状態でサンプル登録するとファイルが削除される  
-回指定の左側のクリアはコンテスト種別，回，問題番号がクリアされる．手動はクリアされない．  
-コンテスト中は上のクリアを使って問題番号だけを変えることを想定している．
-回指定はURLを生成しているだけなので，URL指定がある場合はそちらが優先される．
-ABC,ARC,AGC以外の場合はURL直接入力しか使えない．
-
-
 コマンドリスト
 ```
 	n   : a.cppをテンプレファイルに初期化
@@ -56,34 +43,21 @@ include/setup.shから必要な部分をコメント外しして、環境を構�
 	https://github.com/clever-elsie/lib_Clever_Elsie.git
 	コードスニペットなので必要ない  
 
+コードの中でパスがハードコーディングされている場所があるため，各自書き換えること．
+`tools/src/acl.cpp`,`tools/src/macro.cpp`,`tools/src/new.cpp`は`/`から始まるパスを書いている．
+`./Makefile`,`include/tools/Makefile`,`include/server/Makefile`は`~/work`から始まるパスを書いている．
+
 `tools`のmakeはサーバー以外のすべてのツールのビルドをする。  
 `server`のmakeはCrowが正しくビルドされていないと失敗する。  
 `ln -s /dev/shm/ ../shm`は確認した限り正しく動作しない。  
 意図は伝わると思うが明示しておくと、work直下に`/dev/shm`へのシンボリックリンクを追加する。  
-`echo`の部分は動作確認をしていない。  
-`vim`などで直接記述したほうが良い。  
+`echo`の部分は動作確認をしていない。`vim`などで直接記述したほうが良い。  
 サーバーを使うために`include/tools/server`にある`default`の内容を`/etc/nginx/sites-available/default`に重複部分を除いてコピーする。  
 そのために`default`には必要最小限のことのみを書いているが、`nginx`側の`default`の内容を削除する必要はない。  
 `include/tools/server`にある`code_test.service`は`/etc/systemd/system`の中にコピーして`sudo systemctl enable code_test && sudo systemctl start code_test`とすると、サーバープログラムが有効になる。  
-`~/.bashrc`に以下を記述し、`source ~/.bashrc`する。
-```
-export PS1="\[\e[1;32m\]\w \[\e[0m\]\$"
-alias cls='clear'
-alias n='make n;cls'
-alias pre='make pre;cls'
-alias c='make c'
-alias e='make e'
-alias g='make g'
-alias m='cls;make;'
-alias r='make rand_gen_file'
-alias gen='make gen'
-alias t='make c;cls;make test'
-alias s='make sample_in'
-alias in='make in'
-alias out='make out'
-alias T='time /dev/shm/a.out </dev/shm/in >/dev/shm/out'
-alias acl='make acl'
-```
+`~/.bashrc`に`include/tools/resource/bash_append.txt`の内容を追記して、`source ~/.bashrc`する。
+
+`include/server/tempermonkey_script_for_reg_sample.js`の中身は，tempermonkeyに新規スクリプトとしてコピペする．
 
 ## local.h
 ()内の数字は引数の数
