@@ -27,7 +27,7 @@ crow::response sample_register(const crow::request&req){
 	for(const auto& item:data){
 		if(!item.has("id")||!item.has("sample_in")) return crow::response(400,"Missing required fields");
 		ofstream ofs(string("/dev/shm/")+to_string(item["id"].i())+string(".in"));
-		ofs<<string(item["sample_in"].s())<<endl;
+		ofs<<string(item["sample_in"].s())<<'\n'<<endl;
 	}
 	return crow::response(200);
 }
