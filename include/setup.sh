@@ -8,6 +8,5 @@
 #git clone https://github.com/clever-elsie/lib_Clever_Elsie ../lib_Clever_Elsie
 cd tools; make; cd -;
 cd server; make; cd -;
-#cd server && python3 -m venv venv && source venv/bin/activate && python3 -m pip install beautifulsoup requests && deactivate
 #sudo echo '/dev/shm/ /tmp tmpfs defaults,size=1024m 0 0' >> /etc/fstab
 #ln -s /dev/shm ../shm
