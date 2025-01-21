@@ -2,10 +2,10 @@
 ## 前提条件
 WSL2-Ubuntu22.04 or later
 ## 使い方
-プログラムファイル`work/shm/a.cpp`  
-テスト生成ファイル`work/shm/b.cpp`  
+プログラムファイル`shm/a.cpp`  
+テスト生成ファイル`shm/b.cpp`  
 メインは`n,c,t`。  
-`#include <local.h>`を`~/work/include/local.h`の中身で置き換える。半角スペースは必須。
+`#include <local.h>`を`include/local.h`の中身で置き換える。半角スペースは必須。
 `b.cpp`では出力ファイルを`shm/in`にすると`T`で時間を測れる。
 
 コマンドリスト
@@ -42,10 +42,6 @@ include/setup.shから必要な部分をコメント外しして、環境を構�
 - lib_Clever_Elsie  
 	https://github.com/clever-elsie/lib_Clever_Elsie.git
 	コードスニペットなので必要ない  
-
-コードの中でパスがハードコーディングされている場所があるため，各自書き換えること．
-`tools/src/acl.cpp`,`tools/src/macro.cpp`,`tools/src/new.cpp`は`/`から始まるパスを書いている．
-`./Makefile`,`include/tools/Makefile`,`include/server/Makefile`は`~/work`から始まるパスを書いている．
 
 `tools`のmakeはサーバー以外のすべてのツールのビルドをする。  
 `server`のmakeはCrowが正しくビルドされていないと失敗する。  

@@ -1,10 +1,10 @@
-PP = ~/work/shm/a.cpp
-EXE= ~/work/shm/a.out
+PP = shm/a.cpp
+EXE= shm/a.out
 
-CC = g++ -std=gnu++2b -I ~/work/include -I ~/work/include/ac-library -O2 -DLOCAL -mtune=native -march=native -fconstexpr-depth=2147483647 -fconstexpr-loop-limit=2147483647 -fconstexpr-ops-limit=2147483647 -g
+CC = g++ -std=gnu++2b -I ./include -I include/ac-library -O2 -DLOCAL -mtune=native -march=native -fconstexpr-depth=2147483647 -fconstexpr-loop-limit=2147483647 -fconstexpr-ops-limit=2147483647 -g
 ED = code
 
-tools = ~/work/include/tools/exe/
+tools = include/tools/exe/
 new = $(tools)new.out
 macro = $(tools)macro.out
 
@@ -20,7 +20,7 @@ n: clean
 	$(new)
 	$(ED) $(PP)
 pre: clean
-	cp ./include/tools/resource/template_pre.cpp $(PP)
+	cp include/tools/resource/template_pre.cpp $(PP)
 	$(ED) $(PP)
 c:
 	$(macro) | clip.exe
@@ -40,7 +40,7 @@ out: $(OUT)
 RAND_GEN_FILE = shm/b.cpp
 RAND_GEN = shm/b.out
 $(RAND_GEN_FILE):
-	cp ~/work/include/tools/resource/template.cpp $(RAND_GEN_FILE)
+	cp include/tools/resource/template.cpp $(RAND_GEN_FILE)
 rand_gen_file: $(RAND_GEN_FILE)
 	$(ED) $(RAND_GEN_FILE)
 $(RAND_GEN): $(RAND_GEN_FILE)
@@ -57,13 +57,13 @@ sample_in:
 	$(sample_in_out)
 
 clean:
-	-rm /dev/shm/*
+	-rm shm/*
 
 # GDB
 g: $(EXE)
 	gdb $(EXE)
 
-LOCALH = ~/work/include/local.h
+LOCALH = include/local.h
 local:
 	$(CC) $(LOCALH) -o $(LOCALH).gch
 ACLEXPAND = $(tools)acl.out

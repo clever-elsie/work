@@ -3,7 +3,9 @@
 #include<cstdint>
 #include<cstdlib>
 #include<string>
+#include<filesystem>
 using namespace std;
+namespace fs=std::filesystem;
 
 int32_t main(){
 	cin.tie(nullptr);
@@ -14,7 +16,8 @@ int32_t main(){
 	while(getline(cin,buf)) ofs<<buf<<endl;
 	ofs.close();
 	// /dev/shm/c.cpp -> /dev/shm/combined.cpp
-	int _ = system("python3 /home/elsie/work/include/tools/src/expander.py /dev/shm/c.cpp --lib /home/elsie/work/include/ac-library");
+	string command("python3 include/tools/src/expander.py /dev/shm/c.cpp --lib include/ac-library");
+	int _ = system(command.c_str());
 	if(_) return -1;
 	ifstream ifs("/dev/shm/combined.cpp");
 	while(getline(ifs,buf)) cout<<buf<<endl;

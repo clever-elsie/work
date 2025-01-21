@@ -6,7 +6,7 @@ using namespace std;
 
 int main(){
 	list<string>l_buf,t_buf;
-	ifstream ifs("/home/elsie/work/include/local.h");
+	ifstream ifs("include/local.h");
 	string buf,flag("#include <local.h>");
 	while(getline(ifs,buf)) t_buf.emplace_back(move(buf));
 	ifs.close();

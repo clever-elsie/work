@@ -8,7 +8,7 @@
 using namespace std;
 using sstream=stringstream;
 int main(){
-	filesystem::path dir("/dev/shm");
+	filesystem::path dir("/dev/shm/");
 	set<int>seen;
 	seen.insert(0);
 	for(auto file:filesystem::directory_iterator(dir)){
