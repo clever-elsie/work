@@ -1,7 +1,7 @@
 PP = ~/work/shm/a.cpp
 EXE= ~/work/shm/a.out
 
-CC = g++ -std=gnu++2b -I ~/work/include -I ~/work/include/ac-library -O2 -DLOCAL -mtune=native -march=native -fconstexpr-depth=2147483647 -fconstexpr-loop-limit=2147483647 -fconstexpr-ops-limit=2147483647 
+CC = g++ -std=gnu++2b -I ~/work/include -I ~/work/include/ac-library -O2 -DLOCAL -mtune=native -march=native -fconstexpr-depth=2147483647 -fconstexpr-loop-limit=2147483647 -fconstexpr-ops-limit=2147483647 -g
 ED = code
 
 tools = ~/work/include/tools/exe/
@@ -60,8 +60,7 @@ clean:
 	-rm /dev/shm/*
 
 # GDB
-g:
-	$(CC) -g $(PP) -o $(EXE)
+g: $(EXE)
 	gdb $(EXE)
 
 LOCALH = ~/work/include/local.h
