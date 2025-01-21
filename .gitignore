@@ -7,3 +7,4 @@ include/ac-library
 include/tools/exe/*.out
 include/server/*.out
 oj
+venv

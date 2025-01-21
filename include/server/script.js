@@ -4,7 +4,7 @@ function setSample(){
 		const textarea = document.getElementById(i);
 		if(textarea&&textarea.value){
 			data.push({
-				"id":100+i,
+				"id":9900+i,
 				"sample_in": textarea.value
 			});
 		}
@@ -24,8 +24,6 @@ function setSample(){
 }
 
 function clearField(){
-	document.getElementById('url').value='';
-	document.getElementById('probrem_number').value='';
 	for(let i=1;i<8;i++)
 		document.getElementById(i).value='';
 }
