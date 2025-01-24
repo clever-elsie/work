@@ -110,11 +110,11 @@ namespace vies=std::views;
 #define TK(i) views::take(i)
 #define RV views::reverse
 #define IOTA vies::iota
-#define INT(...) int __VA_ARGS__;getv(__VA_ARGS__)
-#define CHR(...) char __VA_ARGS__;getv(__VA_ARGS__)
-#define STR(...) str __VA_ARGS__;getv(__VA_ARGS__)
-#define VI(a,n) vi a(n);getv(a)
-#define VS(a,n) vs a(n);getv(a)
+#define INT(...) int __VA_ARGS__;in(__VA_ARGS__)
+#define CHR(...) char __VA_ARGS__;in(__VA_ARGS__)
+#define STR(...) str __VA_ARGS__;in(__VA_ARGS__)
+#define VI(a,n) vi a(n);in(a)
+#define VS(a,n) vs a(n);in(a)
 #define UV(u,v) INT(u,v);u--,v--
 #define UVW(u,v,w) INT(u,v,w);u--,v--
 template<integral T,integral U>inline auto ceil(C T a,C U b){return(a+b-1)/b;}
@@ -162,31 +162,38 @@ TP<Lint T>istream&operator>>(istream&src,T&val) {
 TP<integral T>i32 pcnt(T p){return popcount(MUT<T>(p));}
 TP<integral T>i32 lsb(T p){return countl_zero(MUT<T>(p));}
 TP<integral T>i32 msb(T p){return countr_zero(MUT<T>(p));}
-TP<class T>concept Itrabl=requires(C T&x){x.begin();x.end();};
-TP<class T>concept IItrabl=Itrabl<T>&&Itrabl<typename T::value_type>;
-TP<class T>concept ModInt=requires(C T&x){x.val();};
-void _getv(str&a){cin>>a;}
-TP<class T>void _getv(T&a){cin>>a;}
-TP<class T,class U>void _getv(pair<T,U>&a){_getv(a.fi);_getv(a.se);}
-TP<Itrabl T>void _getv(T&a){iter(x,a)_getv(x);}
-TP<class T>void getv(T&a){_getv(a);}
-TP<class T,class... Ts>void getv(T&a,Ts&... b){_getv(a);getv(b...);}
-ostream*dos=&cout;
-void _putv(C str&a){(*dos)<<a<<sep;}
-TP<class T>void _putv(C T&a){(*dos)<<a<<' ';}
-TP<class T,class U>void _putv(C pair<T,U>&a){_putv(a.fi);_putv(a.se);}
-TP<ModInt T>void _putv(C T&a){_putv(a.val());}
-TP<Itrabl T>void _putv(C T&a){cter(x,a)_putv(x);(*dos)<<sep;}
-TP<IItrabl T>void _putv(C T&a){cter(y,a)_putv(y);}
-TP<IItrabl T>void _putv(C T&a)requires same_as<typename T::value_type,str>{cter(x,a)_putv(x);}
-TP<class T>void putv(C T&a){_putv(a);(*dos)<<sep;}
-TP<class T,class... Ts>void putv(C T&a,C Ts&... b){_putv(a);putv(b...);}
-TP<i32 N,integral T> void putbit(T s,char sep='\n'){
+TP<i32 N,integral T>void putbit(T s){
 	char buf[N+1]={0};
 	for(char*itr=buf+N-1;itr>=buf;itr--,s>>=1)
 		*itr='0'+(s&1);
 	cout<<buf<<sep;
 }
+TP<class T>concept Itrabl=requires(C T&x){x.begin();x.end();}&&!std::is_same_v<T,string>;
+TP<class T>concept IItrabl=Itrabl<T>&&Itrabl<typename T::value_type>;
+TP<class T>concept ModInt=requires(C T&x){x.val();};
+TP<class T>concept NLobj=Itrabl<T>||std::is_same_v<T,string>;
+TP<ModInt T>istream&operator>>(istream&is,T&v){int x;is>>x;v=x;return is;}
+TP<Itrabl T>istream&operator>>(istream&is,T&v){iter(x,v)is>>x;return is;}
+TP<class T,class U>istream&operator>>(istream&is,pair<T,U>&v){return is>>v.first>>v.second;}
+TP<class T>void in(T&a){cin>>a;}
+TP<class T,class... Ts>void in(T&a,Ts&... b){in(a);in(b...);}
+TP<class T,class U>vc<pair<T,U>>zip(size_t n,size_t m){
+	vc<pair<T,U>>r(min(n,m));
+	iter(x,y,r)in(x);
+	iter(x,y,r)in(y);
+	return move(r);
+}
+TP<class T,class U>vc<pair<T,U>>zip(size_t n){return move(zip<T,U>(n,n));}
+TP<ModInt T>ostream&operator<<(ostream&os,const T&v){return os<<v.val(); }
+TP<Itrabl T>ostream&operator<<(ostream&os,const T&v){rep(i,v.size())os<<v[i]<<(i+1<v.size()?" ":"");return os;}
+TP<IItrabl T>ostream&operator<<(ostream&os,const T&v){rep(i,v.size())os<<v[i]<<(i+1<v.size()?"\n":"");return os;}
+TP<class T,class U>ostream&operator<<(ostream&os,const pair<T,U>&v){return os<<'('<<v.first<<','<<v.second<<')';}
+ostream*dos=&cout;
+int32_t OFLG; // 0:first, 1:notNLobj, 2:NLobj
+TP<class T>void _out(const T&a){if(OFLG)(*dos)<<"0 \n"[OFLG]<<a;else(*dos)<<a;OFLG=1;}
+TP<NLobj T>void _out(const T&a){(*dos)<<(OFLG?"\n":"")<<a;OFLG=2;}
+TP<class T,class...Ts>void _out(const T&a,const Ts&... b){_out(a);_out(b...);}
+TP<class... Ts>void out(const Ts&... v){OFLG=0;_out(v...);(*dos)<<sep;}
 #undef TP
 #undef C
 #endif
