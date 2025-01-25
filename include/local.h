@@ -185,8 +185,8 @@ TP<class T,class U>vc<pair<T,U>>zip(size_t n,size_t m){
 }
 TP<class T,class U>vc<pair<T,U>>zip(size_t n){return move(zip<T,U>(n,n));}
 TP<ModInt T>ostream&operator<<(ostream&os,const T&v){return os<<v.val(); }
-TP<Itrabl T>ostream&operator<<(ostream&os,const T&v){rep(i,v.size())os<<v[i]<<(i+1<v.size()?" ":"");return os;}
-TP<IItrabl T>ostream&operator<<(ostream&os,const T&v){rep(i,v.size())os<<v[i]<<(i+1<v.size()?"\n":"");return os;}
+TP<Itrabl T>ostream&operator<<(ostream&os,const T&v){int cnt=0;cter(x,v)os<<x<<(++cnt<v.size()?" ":"");return os;}
+TP<IItrabl T>ostream&operator<<(ostream&os,const T&v){int cnt=0;cter(x,v)os<<x<<(++cnt<v.size()?"\n":"");return os;}
 TP<class T,class U>ostream&operator<<(ostream&os,const pair<T,U>&v){return os<<'('<<v.first<<','<<v.second<<')';}
 ostream*dos=&cout;
 int32_t OFLG; // 0:first, 1:notNLobj, 2:NLobj
