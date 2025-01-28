@@ -173,8 +173,8 @@ TP<class T>concept IItrabl=Itrabl<T>&&Itrabl<typename T::value_type>;
 TP<class T>concept ModInt=requires(C T&x){x.val();};
 TP<class T>concept NLobj=Itrabl<T>||std::is_same_v<T,string>;
 TP<ModInt T>istream&operator>>(istream&is,T&v){int x;is>>x;v=x;return is;}
-TP<Itrabl T>istream&operator>>(istream&is,T&v){iter(x,v)is>>x;return is;}
 TP<class T,class U>istream&operator>>(istream&is,pair<T,U>&v){return is>>v.first>>v.second;}
+TP<Itrabl T>istream&operator>>(istream&is,T&v){iter(x,v)is>>x;return is;}
 TP<class T>void in(T&a){cin>>a;}
 TP<class T,class... Ts>void in(T&a,Ts&... b){in(a);in(b...);}
 TP<class T,class U>vc<pair<T,U>>zip(size_t n,size_t m){
