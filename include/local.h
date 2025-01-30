@@ -158,6 +158,8 @@ TP<Lint T>istream&operator>>(istream&src,T&val) {
 	if(is_neg)val*=-1;
 	return src;
 }
+istream&operator<<(istream&is,f128&x){f64 y;is>>y;x=y;return is;}
+ostream&operator<<(ostream&os,const f128&x){return os<<static_cast<f64>(x);}
 #define MUT make_unsigned_t
 TP<integral T>i32 pcnt(T p){return popcount(MUT<T>(p));}
 TP<integral T>i32 lsb(T p){return countl_zero(MUT<T>(p));}
