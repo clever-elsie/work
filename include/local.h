@@ -115,8 +115,8 @@ namespace vies=std::views;
 #define STR(...) str __VA_ARGS__;in(__VA_ARGS__)
 #define VI(a,n) vi a(n);in(a)
 #define VS(a,n) vs a(n);in(a)
-#define UV(u,v) INT(u,v);u--,v--
-#define UVW(u,v,w) INT(u,v,w);u--,v--
+#define UV(u,v) INT(u,v);--u,--v
+#define UVW(u,v,w) INT(u,v,w);--u,--v
 template<integral T,integral U>inline auto ceil(C T a,C U b){return(a+b-1)/b;}
 template<integral T,integral U>inline auto floor(C T a,C U b){return a/b-(a%b&&(a^b)<0);}
 template<class T,class U>concept LUBI= same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>;
@@ -200,7 +200,7 @@ TP<class... Ts>void out(const Ts&... v){OFLG=0;_out(v...);(*dos)<<sep;}
 #undef C
 #endif
 #ifdef LOCAL
-#define dput(...) dos=&cerr;putv(__VA_ARGS__);dos=&cout
+#define dput(...) dos=&cerr;out(__VA_ARGS__);dos=&cout
 #else
 #define dput(...)
 #endif
