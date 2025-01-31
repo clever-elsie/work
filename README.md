@@ -5,14 +5,15 @@ WSL2-Ubuntu22.04 or later
 プログラムファイル`shm/a.cpp`  
 テスト生成ファイル`shm/b.cpp`  
 メインは`n,c,t`。  
-`#include <local.h>`を`include/local.h`の中身で置き換える。半角スペースは必須。
-`b.cpp`では出力ファイルを`shm/in`にすると`T`で時間を測れる。
+`#include <local.h>`を`include/local.h`の中身で置き換える。半角スペースは必須。  
+このディレクトリからの相対パスをハードコーディングしているので，Makefileの`-I`の部分と，`include/tools/src/macro.cpp`の`library_dir`を書き換える必要がある．  
+`b.cpp`では出力ファイルを`shm/in`にすると`T`で時間を測れる。  
 
 コマンドリスト
 ```
 	n   : a.cppをテンプレファイルに初期化
 	e   : a.cppを開く(初期化しない)
-	c   : a.cppをクリップボードにコピー
+	c   : a.cppをクリップボードにコピー．include/local.hに加えて，自分のライブラリを設定すると自動展開する．
 	m   : a.outを実行(コンパイルは必要なら自動で行う)
 	g   : a.cppをデバッグコンパイルして実行
 	t   : cを実行後、a.outですべての登録されているテストを実行(同上)
