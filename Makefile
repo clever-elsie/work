@@ -69,3 +69,7 @@ local:
 ACLEXPAND = $(tools)acl.out
 acl: $(PP)
 	$(macro) | $(ACLEXPAND) | clip.exe
+
+prec = $(tools)precompile.out
+lib:
+	echo $(CC) | ($(prec) 2> /dev/shm/out)

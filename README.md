@@ -5,7 +5,8 @@ WSL2-Ubuntu22.04 or later
 プログラムファイル`shm/a.cpp`  
 テスト生成ファイル`shm/b.cpp`  
 メインは`n,c,t`。  
-`#include <local.h>`を`include/local.h`の中身で置き換える。半角スペースは必須。  
+`#include <local.h>`を`include/local.h`の中身で置き換える。  
+事前に設定したライブラリのディレクトリに一致するファイル名が有れば，それを自動展開する．ただしACLを除く．  
 このディレクトリからの相対パスをハードコーディングしているので，Makefileの`-I`の部分と，`include/tools/src/macro.cpp`の`library_dir`を書き換える必要がある．  
 `b.cpp`では出力ファイルを`shm/in`にすると`T`で時間を測れる。  
 
@@ -24,7 +25,7 @@ WSL2-Ubuntu22.04 or later
 	in  : 実行時間計測用の入力ファイルを開く
 	out : 実行時間計測用の出力ファイルを開く
 	acl : ACLをAtCoder以外でも使えるように展開する
-	pre : テンプレファイルを後置しない`a.cpp`
+	make lib : `tools/src/precompile.cpp`で設定したライブラリの中にある`.hpp`ファイルをプリコンパイルする．`.cpp`の変更が`.hpp.gch`の作成より後に発生していれば実行される．エラーは`/dev/shm/out`に出力．
 ```
 ## 環境構築
 include/setup.shから必要な部分をコメント外しして、環境を構築する。  
