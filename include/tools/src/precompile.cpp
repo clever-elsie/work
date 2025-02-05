@@ -26,6 +26,11 @@ void rec_compile(const filesystem::path&now){
 						cerr<<"\n\n[FAIL] "<<hppname<<"\n\n";
 					}
 				}
+			}else if(to.path().extension()==".gch"){
+				string gchname=to.path().string();
+				string hppname=string(gchname.begin(),gchname.begin()+gchname.size()-4);
+				if(!filesystem::exists(hppname))
+					filesystem::remove(gchname);
 			}
 		}
 	}
