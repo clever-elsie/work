@@ -15,9 +15,10 @@ WSL2-Ubuntu22.04 or later
 	n   : a.cppをテンプレファイルに初期化
 	e   : a.cppを開く(初期化しない)
 	c   : a.cppをクリップボードにコピー．include/local.hに加えて，自分のライブラリを設定すると自動展開する．
+	t   : cを実行後、a.outですべての登録されているテストを実行(同上)
 	m   : a.outを実行(コンパイルは必要なら自動で行う)
 	g   : a.cppをデバッグコンパイルして実行
-	t   : cを実行後、a.outですべての登録されているテストを実行(同上)
+	z   : コンパイル
 	r   : b.cppを開く
 	gen : b.cppから入力生成する。b.cppでcoutはshm/inにリダイレクトされる。
 	s   : 手動でサンプル登録する。
@@ -25,7 +26,8 @@ WSL2-Ubuntu22.04 or later
 	in  : 実行時間計測用の入力ファイルを開く
 	out : 実行時間計測用の出力ファイルを開く
 	acl : ACLをAtCoder以外でも使えるように展開する
-	make lib : `tools/src/precompile.cpp`で設定したライブラリの中にある`.hpp`ファイルをプリコンパイルする．`.cpp`の変更が`.hpp.gch`の作成より後に発生していれば実行される．エラーは`/dev/shm/out`に出力．
+	lib : `tools/src/precompile.cpp`で設定したライブラリの中にある`.hpp`ファイルをプリコンパイルする．`.cpp`の変更が`.hpp.gch`の作成より後に発生していれば実行される．エラーは`/dev/shm/out`に出力．
+	ojt : online-judge-toolsを用いてtestを行うshm/testにテストファイルを配置する．venvをactivateする必要がある．
 ```
 ## 環境構築
 include/setup.shから必要な部分をコメント外しして、環境を構築する。  
