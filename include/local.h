@@ -1,3 +1,5 @@
+#ifndef ELSIE_LOCAL_H
+#define ELSIE_LOCAL_H
 #if __has_include(<atcoder/all>)
 #include<atcoder/all>
 using namespace atcoder;
@@ -27,7 +29,7 @@ using sstream=stringstream;
 #define fi first
 #define se second
 #define endl '\n'
-#define sn(i,c) " \n"[i==c];
+#define sn(i,c) " \n"[i==c]
 #define rsv(n) reserve(n)
 #define pf(a) push_front(a)
 #define pb(a) push_back(a)
@@ -204,4 +206,4 @@ TP<class... Ts>void out(const Ts&... v){OFLG=0;_out(v...);(*dos)<<sep;}
 #else
 #define dput(...)
 #endif
-
+#endif // include guard
