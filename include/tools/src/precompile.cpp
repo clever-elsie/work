@@ -38,6 +38,6 @@ void rec_compile(const filesystem::path&now){
 
 int main(int argc,char**argv){
 	getline(cin,gcc);
-	gcc+=" -c ";
+	gcc+=" -x c++-header ";
 	rec_compile(filesystem::path("./lib_Clever_Elsie"));
 }
