@@ -20,6 +20,7 @@ template<class s>struct gnu_set:public gnu_map<s,null_type>{gnu_map<s,null_type>
 #endif
 #include <bits/stdc++.h>
 using namespace std;
+using namespace chrono;
 using std::cin;
 using std::cout;
 using sstream=stringstream;
