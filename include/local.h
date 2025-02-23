@@ -96,7 +96,6 @@ using vi=vc<int>;using vb=vc<bool>;
 using pi=pair<int,int>;
 using str=string;using vs=vc<str>;
 using pqgp=pqg<pi>;
-#define double f128
 constexpr int inf=1ll<<60,minf=-inf;
 constexpr char sep='\n';
 constexpr array<pi,8>dc={{{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}}};
