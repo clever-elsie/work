@@ -24,9 +24,8 @@ using namespace chrono;
 using std::cin;
 using std::cout;
 using sstream=stringstream;
+#include <misc/alias.hpp>
 #define RET return
-#define int long long
-#define itn long long
 #define fi first
 #define se second
 #define endl '\n'
@@ -79,23 +78,6 @@ using sstream=stringstream;
 #define uni(a) Sort(a);a.erase(unique(A(a)),a.end())
 #define swapcase(a) a=(isalpha(a)?a^32:a)
 #define NL cout<<'\n'
-template<class f>using gr=greater<f>;
-template<class f>using vc=vector<f>;
-template<class f>using vv=vc<vc<f>>;
-template<class f>using v3=vv<vc<f>>;
-template<class f>using v4=vv<vv<f>>;
-template<class f>using pq=priority_queue<f>;
-template<class f>using pqg=priority_queue<f, vc<f>, gr<f>>;
-#define uset unordered_set
-#define umap unordered_map
-using i8=int8_t; using i16=int16_t; using i32=int32_t; using i64=int64_t; using i128=__int128_t;
-using u8=uint8_t;using u16=uint16_t;using u32=uint32_t;using u64=uint64_t;using u128=__uint128_t;
-using intw=__int128_t;using uintw=__uint128_t; using it=i32;
-using f32=float;using f64=double;using f128=__float128;
-using vi=vc<int>;using vb=vc<bool>;
-using pi=pair<int,int>;
-using str=string;using vs=vc<str>;
-using pqgp=pqg<pi>;
 constexpr int inf=1ll<<60,minf=-inf;
 constexpr char sep='\n';
 constexpr array<pi,8>dc={{{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}}};
@@ -133,33 +115,6 @@ TP u64 ubi(u64 i,C T&v,u64 e,C U&x,cp cmp=cp())RL{RET ub(i+I(v,e),x,cmp)-begin(v
 #undef TP
 #undef RL
 #define TP template
-TP<class T>concept Lint=is_integral_v<T>&&sizeof(T)>8;
-TP<Lint T>ostream&operator<<(ostream&dst,T val){
-	ostream::sentry s(dst);
-	if(!s)return dst;
-	char _O128[64];
-	char*d=end(_O128);
-	bool vsign=val<0;
-	uintw v=val;
-	if(vsign&&val!=numeric_limits<T>::min())v=1+~(uintw)val;
-	do{
-		*(--d)="0123456789"[v%10];
-		v/=10;
-	}while(v!=0);
-	if(vsign)*(--d)='-';
-	size_t len=end(_O128)-d;
-	if(dst.rdbuf()->sputn(d,len)!=len)dst.setstate(ios_base::badbit);
-	return dst;
-}
-TP<Lint T>istream&operator>>(istream&src,T&val) {
-	str s;src>>s;
-	bool is_neg=numeric_limits<T>::is_signed&&s.size()>0&&s[0]=='-';
-	for(val=0;C auto&x:s|views::drop(is_neg))val=10*val+x-'0';
-	if(is_neg)val*=-1;
-	return src;
-}
-istream&operator<<(istream&is,f128&x){f64 y;is>>y;x=y;return is;}
-ostream&operator<<(ostream&os,const f128&x){return os<<static_cast<f64>(x);}
 #define MUT make_unsigned_t
 TP<integral T>i32 pcnt(T p){return popcount(MUT<T>(p));}
 TP<integral T>i32 lsb(T p){return countl_zero(MUT<T>(p));}
@@ -170,34 +125,9 @@ TP<i32 N,integral T>void putbit(T s){
 		*itr='0'+(s&1);
 	cout<<buf<<sep;
 }
-TP<class T>concept Itrabl=requires(C T&x){x.begin();x.end();}&&!std::is_same_v<T,string>;
-TP<class T>concept IItrabl=Itrabl<T>&&Itrabl<typename T::value_type>;
-TP<class T>concept ModInt=requires(C T&x){x.val();};
-TP<class T>concept NLobj=Itrabl<T>||std::is_same_v<T,string>;
-TP<ModInt T>istream&operator>>(istream&is,T&v){int x;is>>x;v=x;return is;}
-TP<class T,class U>istream&operator>>(istream&is,pair<T,U>&v){return is>>v.first>>v.second;}
-TP<Itrabl T>istream&operator>>(istream&is,T&v){iter(x,v)is>>x;return is;}
-TP<class T>void in(T&a){cin>>a;}
-TP<class T,class... Ts>void in(T&a,Ts&... b){in(a);in(b...);}
-TP<class T,class U>vc<pair<T,U>>zip(size_t n,size_t m){
-	vc<pair<T,U>>r(min(n,m));
-	iter(x,y,r)in(x);
-	iter(x,y,r)in(y);
-	return move(r);
-}
-TP<class T,class U>vc<pair<T,U>>zip(size_t n){return move(zip<T,U>(n,n));}
-TP<ModInt T>ostream&operator<<(ostream&os,const T&v){return os<<v.val(); }
-TP<Itrabl T>ostream&operator<<(ostream&os,const T&v){int cnt=0;cter(x,v)os<<x<<(++cnt<v.size()?" ":"");return os;}
-TP<IItrabl T>ostream&operator<<(ostream&os,const T&v){int cnt=0;cter(x,v)os<<x<<(++cnt<v.size()?"\n":"");return os;}
-TP<class T,class U>ostream&operator<<(ostream&os,const pair<T,U>&v){return os<<'('<<v.first<<','<<v.second<<')';}
-ostream*dos=&cout;
-int32_t OFLG; // 0:first, 1:notNLobj, 2:NLobj
-TP<class T>void _out(const T&a){if(OFLG)(*dos)<<"0 \n"[OFLG]<<a;else(*dos)<<a;OFLG=1;}
-TP<NLobj T>void _out(const T&a){(*dos)<<(OFLG?"\n":"")<<a;OFLG=2;}
-TP<class T,class...Ts>void _out(const T&a,const Ts&... b){_out(a);_out(b...);}
-TP<class... Ts>void out(const Ts&... v){OFLG=0;_out(v...);(*dos)<<sep;}
+#undef MUT
 #undef TP
-#undef C
+#include <misc/std_io.hpp>
 #endif
 #ifdef LOCAL
 #define dput(...) dos=&cerr;out(__VA_ARGS__);dos=&cout
