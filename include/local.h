@@ -1,26 +1,59 @@
 #ifndef ELSIE_LOCAL_H
 #define ELSIE_LOCAL_H
-#if __has_include(<atcoder/all>)
-#include<atcoder/all>
+#if __has_include(<atcoder/modint>)
+#include "atcoder/modint"
 using namespace atcoder;
 using mint=modint998244353;
 using mint1=modint1000000007;
 #endif
-#if __has_include(<ext/pb_ds/assoc_container.hpp>) && __has_include(<ext/pb_ds/tree_policy.hpp>)
-#include<ext/pb_ds/assoc_container.hpp>
-#include<ext/pb_ds/tree_policy.hpp>
-using namespace __gnu_pbds;
-template<class s,class t>using __gnu_map=tree<s,t,std::less<s>,rb_tree_tag,tree_order_statistics_node_update>;
-template<class s,class t>struct gnu_map:public __gnu_map<s,t>{
-	using iterator=typename __gnu_map<s,t>::iterator;
-	iterator get(int64_t idx){return this->find_by_order(idx<0?this->size()-idx:idx);}
-	size_t ord(const s&key){return this->order_of_key(key);}
-};
-template<class s>struct gnu_set:public gnu_map<s,null_type>{gnu_map<s,null_type>::iterator operator[](int64_t i){return this->get(i);}};
-#endif
-#include <bits/stdc++.h>
+#include <limits>
+#include <new>
+#include <initializer_list>
+#include <compare>
+#include <concepts>
+#include <utility>
+#include <bitset>
+#include <tuple>
+#include <type_traits>
+#include <functional>
+#include <chrono>
+#include <string>
+#include <array>
+#include <deque>
+#include <list>
+#include <queue>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <iterator>
+#include <ranges>
+#include <algorithm>
+#include <bit>
+#include <random>
+#include <numeric>
+#include <numbers>
+#include <iostream>
+#include <ios>
+#include <streambuf>
+#include <iomanip>
+#include <sstream>
+#include <regex>
+#include <cassert>
+#include <cctype>
+#include <climits>
+#include <cmath>
+#include <cstdarg>
+#include <cstddef>
+#include <cstdint>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+#include <dtStrc/binary_tree/rbtree.hpp>
 using namespace std;
 using namespace chrono;
+using namespace elsie;
+namespace nbl=numbers;
 using std::cin;
 using std::cout;
 using sstream=stringstream;
