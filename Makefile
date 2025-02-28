@@ -1,7 +1,7 @@
 PP = shm/a.cpp
 EXE= shm/a.out
 
-CC = g++ -std=gnu++2b -I ./include -I include/ac-library -I ./lib_Clever_Elsie -O2 -DLOCAL -mtune=native -march=native -fconstexpr-depth=2147483647 -fconstexpr-loop-limit=2147483647 -fconstexpr-ops-limit=2147483647 -g
+CC = g++ -std=gnu++2b -I ./include -I include/ac-library -I ./lib_Clever_Elsie -O2 -DLOCAL -g
 ED = code
 
 tools = include/tools/exe/

@@ -78,9 +78,10 @@ using sstream=stringstream;
 #define uni(a) Sort(a);a.erase(unique(A(a)),a.end())
 #define swapcase(a) a=(isalpha(a)?a^32:a)
 #define NL cout<<'\n'
-constexpr int inf=1ll<<60,minf=-inf;
+constexpr i64 inf=1ll<<60,minf=-inf;
+constexpr i32 inf32=1ll<<30,minf32=-inf32;
 constexpr char sep='\n';
-constexpr array<pi,8>dc={{{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}}};
+constexpr array<pit,8>dc={{{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}}};
 template<class T,class U>inline void chmax(T&a,const U&b){if(a<b)a=b;}
 template<class T,class U>inline void chmin(T&a,const U&b){if(a>b)a=b;}
 #define yes cout<<"Yes\n"
@@ -98,6 +99,7 @@ namespace vies=std::views;
 #define CHR(...) char __VA_ARGS__;in(__VA_ARGS__)
 #define STR(...) str __VA_ARGS__;in(__VA_ARGS__)
 #define VI(a,n) vi a(n);in(a)
+#define VIT(a,n) vit a(n);in(a)
 #define VS(a,n) vs a(n);in(a)
 #define UV(u,v) INT(u,v);--u,--v
 #define UVW(u,v,w) INT(u,v,w);--u,--v
@@ -127,6 +129,7 @@ TP<i32 N,integral T>void putbit(T s){
 }
 #undef MUT
 #undef TP
+#undef C
 #include <misc/std_io.hpp>
 #endif
 #ifdef LOCAL
