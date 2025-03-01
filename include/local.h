@@ -57,7 +57,6 @@ namespace nbl=numbers;
 using std::cin;
 using std::cout;
 using sstream=stringstream;
-#include <misc/alias.hpp>
 #define RET return
 #define fi first
 #define se second
@@ -111,10 +110,10 @@ using sstream=stringstream;
 #define uni(a) Sort(a);a.erase(unique(A(a)),a.end())
 #define swapcase(a) a=(isalpha(a)?a^32:a)
 #define NL cout<<'\n'
-constexpr i64 inf=1ll<<60,minf=-inf;
-constexpr i32 inf32=1ll<<30,minf32=-inf32;
+constexpr int64_t inf=1ll<<60,minf=-inf;
+constexpr int32_t inf32=1ll<<30,minf32=-inf32;
 constexpr char sep='\n';
-constexpr array<pit,8>dc={{{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}}};
+constexpr array<pair<int32_t,int32_t>,8>dc={{{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}}};
 template<class T,class U>inline void chmax(T&a,const U&b){if(a<b)a=b;}
 template<class T,class U>inline void chmin(T&a,const U&b){if(a>b)a=b;}
 #define yes cout<<"Yes\n"
@@ -136,25 +135,25 @@ namespace vies=std::views;
 #define VS(a,n) vs a(n);in(a)
 #define UV(u,v) INT(u,v);--u,--v
 #define UVW(u,v,w) INT(u,v,w);--u,--v
-template<class T,class U>concept LUBI= same_as<T,vc<U>>||same_as<T,deque<U>>||is_array_v<T>;
+template<class T,class U>concept LUBI= same_as<T,vector<U>>||same_as<T,deque<U>>||is_array_v<T>;
 #define TP template<class T,class U,typename cp=less<U>>
 #define RL requires LUBI<T,U>
-TP u64 lbi(C T&v,C U&x,cp cmp=cp())RL{RET lb(A(v),x,cmp)-begin(v);}
-TP u64 ubi(C T&v,C U&x,cp cmp=cp())RL{RET ub(A(v),x,cmp)-begin(v);}
-TP u64 lbi(u64 i,C T&v,C U&x,cp cmp=cp())RL{RET lb(i+A(v),x,cmp)-begin(v);}
-TP u64 ubi(u64 i,C T&v,C U&x,cp cmp=cp())RL{RET ub(i+A(v),x,cmp)-begin(v);}
-TP u64 lbi(C T&v,u64 i,C U&x,cp cmp=cp())RL{RET lb(I(v,i),x,cmp)-begin(v);}
-TP u64 ubi(C T&v,u64 i,C U&x,cp cmp=cp())RL{RET ub(I(v,i),x,cmp)-begin(v);}
-TP u64 lbi(u64 i,C T&v,u64 e,C U&x,cp cmp=cp())RL{RET lb(i+I(v,e),x,cmp)-begin(v);}
-TP u64 ubi(u64 i,C T&v,u64 e,C U&x,cp cmp=cp())RL{RET ub(i+I(v,e),x,cmp)-begin(v);}
+TP size_t lbi(C T&v,C U&x,cp cmp=cp())RL{RET lb(A(v),x,cmp)-begin(v);}
+TP size_t ubi(C T&v,C U&x,cp cmp=cp())RL{RET ub(A(v),x,cmp)-begin(v);}
+TP size_t lbi(size_t i,C T&v,C U&x,cp cmp=cp())RL{RET lb(i+A(v),x,cmp)-begin(v);}
+TP size_t ubi(size_t i,C T&v,C U&x,cp cmp=cp())RL{RET ub(i+A(v),x,cmp)-begin(v);}
+TP size_t lbi(C T&v,size_t i,C U&x,cp cmp=cp())RL{RET lb(I(v,i),x,cmp)-begin(v);}
+TP size_t ubi(C T&v,size_t i,C U&x,cp cmp=cp())RL{RET ub(I(v,i),x,cmp)-begin(v);}
+TP size_t lbi(size_t i,C T&v,size_t e,C U&x,cp cmp=cp())RL{RET lb(i+I(v,e),x,cmp)-begin(v);}
+TP size_t ubi(size_t i,C T&v,size_t e,C U&x,cp cmp=cp())RL{RET ub(i+I(v,e),x,cmp)-begin(v);}
 #undef TP
 #undef RL
 #define TP template
 #define MUT make_unsigned_t
-TP<integral T>i32 pcnt(T p){return popcount(MUT<T>(p));}
-TP<integral T>i32 lsb(T p){return countl_zero(MUT<T>(p));}
-TP<integral T>i32 msb(T p){return countr_zero(MUT<T>(p));}
-TP<i32 N,integral T>void putbit(T s){
+TP<integral T>int32_t pcnt(T p){return popcount(MUT<T>(p));}
+TP<integral T>int32_t lsb(T p){return countl_zero(MUT<T>(p));}
+TP<integral T>int32_t msb(T p){return countr_zero(MUT<T>(p));}
+TP<int32_t N,integral T>void putbit(T s){
 	char buf[N+1]={0};
 	for(char*itr=buf+N-1;itr>=buf;itr--,s>>=1)
 		*itr='0'+(s&1);
