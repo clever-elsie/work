@@ -23,7 +23,7 @@ pre: clean
 	cp include/tools/resource/template_pre.cpp $(PP)
 	$(ED) $(PP)
 c:
-	$(macro) | clip.exe
+	$(macro) | iconv -t sjis | clip.exe
 e:
 	$(ED) $(PP)
 z: $(PP)
