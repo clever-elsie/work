@@ -31,7 +31,7 @@ z: $(PP)
 
 ojt:
 	$(CC) $(PP) -o $(EXE)
-	cd shm && oj test -N -s -j 12 --no-print-input -t 15 && cd -
+	cd shm && oj test -N -s -j $(ojt_thread) --no-print-input -t 15 && cd -
 
 IN = shm/in
 OUT = shm/out
