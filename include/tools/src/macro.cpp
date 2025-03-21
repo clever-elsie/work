@@ -8,7 +8,7 @@
 #include<regex>
 using namespace std;
 
-const static string library_dir("lib_Clever_Elsie/"); // from pwd == ./work
+const static string library_dir("/usr/local/include/lib_Clever_Elsie/"); // from pwd == ./work
 unordered_set<string>included;
 list<string>lines;
 vector<string>bits_stdcppH;

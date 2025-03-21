@@ -1,7 +1,10 @@
 PP = shm/a.cpp
 EXE= shm/a.out
 
-CC = g++ -std=gnu++2b -I ./include -I include/ac-library -I ./lib_Clever_Elsie -O2 -DLOCAL -g
+LIB1 = /usr/local/include/ac-library
+LIB2 = /usr/local/include/lib_Clever_Elsie
+
+CC = g++ -std=gnu++2b -I ./include -I $(LIB1) -I $(LIB2) -O2 -DLOCAL -g
 ED = code
 
 tools = include/tools/exe/
