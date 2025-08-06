@@ -45,7 +45,8 @@ include/setup.shから必要な部分をコメント外しして、環境を構�
     AtCoderで使えるライブラリ
 - lib_Clever_Elsie  
     https://github.com/clever-elsie/lib_Clever_Elsie.git
-    コードスニペットなので必要ない  
+    `local.h`で参照しているためインクルードパスに追加しないといけない．  
+    `local.h`の中身を書き換えるなら不要．その場合は自分の`include/tools/src/macro.cpp`の`library_dir`もいい感じに書き換えるといい．
 
 `tools`のmakeはサーバー以外のすべてのツールのビルドをする。  
 `server`のmakeはCrowが正しくビルドされていないと失敗する。  
