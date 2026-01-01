@@ -10,3 +10,8 @@ cd tools; make; cd -;
 cd server; make; cd -;
 #sudo echo '/dev/shm/ /tmp tmpfs defaults,size=1024m 0 0' >> /etc/fstab
 #ln -s /dev/shm ../shm
+#sudo apt-get install -y zlib1g-dev libbz2-dev librt-dev
+#sudo apt-get install -y libgmp-dev libboost-all-dev
+#sudo apt-get install -y libglpk-dev
+#sudo apt install -y libomp-dev
+# https://abseil.io/docs/cpp/quickstart-cmake

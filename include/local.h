@@ -4,55 +4,84 @@ using namespace atcoder;
 using mint=modint998244353;
 using mint1=modint1000000007;
 #endif
-#include <limits>
-#include <new>
-#include <initializer_list>
-#include <compare>
-#include <concepts>
-#include <utility>
-#include <bitset>
-#include <tuple>
-#include <type_traits>
-#include <functional>
-#include <chrono>
-#include <array>
-#include <deque>
-#include <list>
-#include <queue>
-#include <vector>
-#include <set>
-#include <map>
-#include <unordered_map>
-#include <unordered_set>
-#include <iterator>
-#include <ranges>
-#include <algorithm>
-#include <bit>
-#include <random>
-#include <numeric>
-#include <numbers>
-#include <iostream>
-#include <ios>
-#include <streambuf>
-#include <iomanip>
-#include <sstream>
-#include <regex>
-#include <cassert>
-#include <cctype>
-#include <climits>
-#include <cmath>
-#include <cstdarg>
-#include <cstddef>
-#include <cstdint>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <ctime>
+#include<limits>
+#include<new>
+#include<initializer_list>
+#include<compare>
+#include<concepts>
+#include<utility>
+#include<bitset>
+#include<tuple>
+#include<type_traits>
+#include<functional>
+#include<array>
+#include<deque>
+#include<list>
+#include<queue>
+#include<vector>
+#include<set>
+#include<map>
+#include<unordered_map>
+#include<unordered_set>
+#include<iterator>
+#include<ranges>
+#include<algorithm>
+#include<bit>
+#include<random>
+#include<numeric>
+#include<numbers>
+#include<iostream>
+#include<ios>
+#include<streambuf>
+#include<iomanip>
+#include<sstream>
+#include<cassert>
+#include<cctype>
+#include<climits>
+#include<cmath>
+#include<cstdarg>
+#include<cstddef>
+#include<cstdint>
+#include<cstdio>
+#include<cstdlib>
+#include<cstring>
 using namespace std;
-using namespace chrono;
 using std::cin;
 using std::cout;
 using sstream=stringstream;
+template<class f>using vc=vector<f>;
+template<class f>using vv=vc<vc<f>>;
+template<class f>using v3=vv<vc<f>>;
+template<class f>using v4=vv<vv<f>>;
+template<class T>using twin=std::pair<T,T>;
+template<class f>using gr=greater<f>;
+template<class f>using pq=priority_queue<f>;
+template<class f>using pqg=priority_queue<f, vc<f>, gr<f>>;
+template<class Key, class Hash=std::hash<Key>, class Pred=std::equal_to<Key>, class Allocator= std::allocator<Key>>
+using uset=unordered_set<Key,Hash,Pred,Allocator>;
+template<class Key, class T, class Hash=std::hash<Key>, class Pred=std::equal_to<Key>, class Allocator= std::allocator<Key>>
+using umap=unordered_map<Key,T,Hash,Pred,Allocator>;
+using it=int32_t;
+using i8=int8_t;   using u8=uint8_t;
+using i16=int16_t; using u16=uint16_t;
+using i32=int32_t; using u32=uint32_t;
+using i64=int64_t; using u64=uint64_t;
+using i128=__int128_t; using u128=__uint128_t;
+using intw=__int128_t; using uintw=__uint128_t;
+using f32=float;
+using f64=double;
+using f128=__float128;
+using vi=vc<i64>;
+using vit=vc<it>;
+using vb=vc<bool>;
+using pi=twin<i64>;
+using pit=twin<it>;
+using str=string;
+using vs=vc<str>;
+using pqgp=pqg<pi>;
+#define int i64
+#define itn i64
+#define LL long long
 #define RET return
 #define fi first
 #define se second
@@ -91,10 +120,10 @@ using sstream=stringstream;
 #define cter(...) _SEL3(__VA_ARGS__,_CTER3,_CTER2)(__VA_ARGS__)
 #define NL cout<<'\n'
 #define npi numbers::pi
-constexpr int64_t inf=1ll<<60,minf=-inf;
-constexpr int32_t inf32=1ll<<30,minf32=-inf32;
+constexpr i64 inf=1ll<<60,minf=-inf;
+constexpr u32 inf32=1ll<<30,minf32=-inf32;
 constexpr char sep='\n';
-constexpr array<pair<int32_t,int32_t>,8>dc={{{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}}};
+constexpr array<pit,8>dc={pit{1,0},{0,1},{-1,0},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}};
 #define yes cout<<"Yes\n"
 #define no cout<<"No\n"
 #define yn(c) (c)?yes:no
@@ -104,7 +133,7 @@ namespace vies=std::views;
 #define DR(i) views::drop(i)
 #define TK(i) views::take(i)
 #define RV views::reverse
-#define IOTA vies::iota
+#define IOTA views::iota
 
 #define rev(a) reverse(A(a))
 #define minel(a) min_element(A(a))
@@ -117,7 +146,6 @@ namespace vies=std::views;
 
 template<class T,class U>inline void chmax(T&a,const U&b){if(a<b)a=b;}
 template<class T,class U>inline void chmin(T&a,const U&b){if(a>b)a=b;}
-
 
 #define _BISECT4(_1,_2,_3,_4,name,...) name
 #define _LB_BEX(b,e,x) lower_bound(b,e,x)
@@ -145,9 +173,9 @@ TP size_t ubi(size_t i,const T&v,size_t e,const U&x,cp cmp=cp())RL{RET ub(i+I(v,
 #define TP template<integral T>
 #define MT make_unsigned_t<T>
 
-TP constexpr int32_t pcnt(T p){return popcount(MT(p));}
-TP constexpr int32_t lsb(T p){return countr_zero(MT(p));}
-TP constexpr int32_t msb(T p){return sizeof(T)*8-1-countl_zero(MT(p));}
+TP constexpr i32 pcnt(T p){return popcount(MT(p));}
+TP constexpr i32 lsb(T p){return countr_zero(MT(p));}
+TP constexpr i32 msb(T p){return sizeof(T)*8-1-countl_zero(MT(p));}
 
 template<int32_t N,integral T>
 void putbit(T s){
@@ -216,53 +244,21 @@ template<Itrabl T>istream&operator>>(istream&is,T&v){for(auto&&x:v)is>>x;return 
 template<class T>void in(T&a){cin>>a;}
 template<class T,class... Ts>void in(T&a,Ts&... b){in(a);in(b...);}
 
-template<class T,class U>vector<pair<T,U>>zip(size_t n,size_t m){
+template<class T,class U>vector<pair<T,U>>zip(u64 n,u64 m){
   vector<pair<T,U>>r(min(n,m));
   iter(x,y,r)in(x);
   iter(x,y,r)in(y);
   return move(r);
 }
-template<class T,class U>vector<pair<T,U>>zip(size_t n){return move(zip<T,U>(n,n));}
+template<class T,class U>vector<pair<T,U>>zip(u64 n){return move(zip<T,U>(n,n));}
 
 template<ModInt T>ostream&operator<<(ostream&os,const T&v){return os<<v.val(); }
 template<class T,class U>ostream&operator<<(ostream&os,const pair<T,U>&v){return os<<'('<<v.first<<','<<v.second<<')';}
-template<Itrabl T>ostream&operator<<(ostream&os,const T&v){size_t cnt=0;cter(x,v)os<<x<<(++cnt<v.size()?" ":"");return os;}
-template<IItrabl T>ostream&operator<<(ostream&os,const T&v){size_t cnt=0;cter(x,v)os<<x<<(++cnt<v.size()?"\n":"");return os;}
+template<Itrabl T>ostream&operator<<(ostream&os,const T&v){u64 cnt=0;cter(x,v)os<<x<<(++cnt<v.size()?" ":"");return os;}
+template<IItrabl T>ostream&operator<<(ostream&os,const T&v){u64 cnt=0;cter(x,v)os<<x<<(++cnt<v.size()?"\n":"");return os;}
 inline ostream*dos=&cout;
 inline int32_t OFLG; // 0:first, 1:notNLobj, 2:NLobj
 template<class T>void _out(const T&a){if(OFLG)(*dos)<<"0 \n"[OFLG]<<a;else(*dos)<<a;OFLG=1;}
 template<NLobj T>void _out(const T&a){(*dos)<<(OFLG?"\n":"")<<a;OFLG=2;}
 template<class T,class...Ts>void _out(const T&a,const Ts&... b){_out(a);_out(b...);}
 template<class... Ts>void out(const Ts&... v){OFLG=0;_out(v...);(*dos)<<sep;}
-
-template<class f>using vc=vector<f>;
-template<class f>using vv=vc<vc<f>>;
-template<class f>using v3=vv<vc<f>>;
-template<class f>using v4=vv<vv<f>>;
-
-template<class f>using gr=greater<f>;
-template<class f>using pq=priority_queue<f>;
-template<class f>using pqg=priority_queue<f, vc<f>, gr<f>>;
-#define uset unordered_set
-#define umap unordered_map
-using it=int32_t;
-using i8=int8_t;   using u8=uint8_t;
-using i16=int16_t; using u16=uint16_t;
-using i32=int32_t; using u32=uint32_t;
-using i64=int64_t; using u64=uint64_t;
-using i128=__int128_t; using u128=__uint128_t;
-using intw=__int128_t; using uintw=__uint128_t;
-using f32=float;
-using f64=double;
-using f128=__float128;
-using vi=vc<i64>;
-using vit=vc<it>;
-using vb=vc<bool>;
-using pi=pair<i64,i64>;
-using pit=pair<it,it>;
-using str=string;
-using vs=vc<str>;
-using pqgp=pqg<pi>;
-#define int i64
-#define itn i64
-#define LL long long
