@@ -13,52 +13,61 @@ unordered_set<string>included;
 list<string>lines;
 vector<string>bits_stdcppH;
 
-void rec_parser(ifstream&&);
+void rec_parser(const string&);
 void construct_bits_stdcppH();
 
 int main(){
     construct_bits_stdcppH();
-    rec_parser(ifstream("/dev/shm/a.cpp"));
+    rec_parser("/dev/shm/a.cpp");
     for(const auto&x:lines)
         cout<<x<<'\n';
     cout<<flush;
 }
 
-void rec_parser(ifstream&&ifs){
-    auto pq=[](const string&s)->pair<size_t,size_t> {
+void rec_parser(const string&filename){
+    auto pq=[](const string&s) {
         size_t p=s.find('<'),q=s.find('>');
+        bool is_relative_first=false;
         if(p==string::npos){
             p=s.find('\"');
             q=s.find('\"',p+1);
+            is_relative_first=true;
         }
-        return {p+1,q};
+        return std::make_tuple(p+1,q,is_relative_first);
     };
+    ifstream ifs(filename);
     string buf;
     while(getline(ifs,buf)){
-        bool for_insert=true;
         if(regex_match(buf.begin(),buf.end(),regex("\\s*#\\s*include.*"))){
-            auto[p,q]=pq(buf);
+            auto[p,q,r]=pq(buf);
             string b(begin(buf)+p,begin(buf)+q);
-            if(included.contains(b)) for_insert=false;
+            if(r){
+                filesystem::path file=filesystem::path(filename).parent_path()/b;
+                if(filesystem::exists(file)){
+                    rec_parser(file.string());
+                    continue;
+                }
+            }
+            if(included.contains(b)) continue;
             else{
                 included.insert(b);
                 if(b=="local.h"){
-                    for_insert=false;
-                    rec_parser(ifstream("include/local.h"));
-                }else if(b=="bits/stdc++.h"){
+                    rec_parser("include/local.h");
+                    continue;
+                }else if(b=="bits/stdc++.h"){ // bits/stdc++.hに限らず標準ヘッダはそのまま
                     for(const auto&s:bits_stdcppH)
                         included.insert(s);
-                    // 自作ライブラリでもACLでもないのでfor_insertはtrue
                 }else{
+                    // ライブラリルートからのパス
                     string file=library_dir+b;
                     if(filesystem::exists(file)){
-                        for_insert=false;
-                        rec_parser(ifstream(file));
+                        rec_parser(file);
+                        continue;
                     }
                 }
             }
         }
-        if(for_insert) lines.push_back(move(buf));
+        lines.push_back(move(buf));
     }
 }
 
