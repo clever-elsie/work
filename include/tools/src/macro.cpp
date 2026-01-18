@@ -42,10 +42,12 @@ void rec_parser(const string&filename){
             auto[p,q,r]=pq(buf);
             string b(begin(buf)+p,begin(buf)+q);
             if(r){
-                filesystem::path file=filesystem::path(filename).parent_path()/b;
-                if(filesystem::exists(file)){
+                try{
+                    filesystem::path file=filesystem::canonical(filesystem::path(filename).parent_path()/b);
                     rec_parser(file.string());
                     continue;
+                }catch(...){
+                    // 相対パスが無い場合は無視して次の処理をすればいいので無視してOK
                 }
             }
             if(included.contains(b)) continue;
