@@ -4,7 +4,7 @@ EXE= shm/a.out
 LIB1 = /usr/local/include/ac-library
 LIB2 = /usr/local/include/lib_Clever_Elsie
 
-CC = g++ -std=gnu++2b -I ./include -I $(LIB1) -I $(LIB2) -O2 -DLOCAL -g
+CC = g++ -std=gnu++2b -I ./include -I $(LIB1) -I $(LIB2) -O2 -DLOCAL -g -mavx2 -mavx512f -march=native -mtune=native
 ED = code
 
 tools = include/tools/exe/
